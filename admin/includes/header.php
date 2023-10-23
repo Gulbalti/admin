@@ -1,3 +1,19 @@
+
+<?php  
+
+    session_start(); 
+
+    if (!isset($_SESSION['fullname'])) {
+       $_SESSION['fullname'];
+      header('location:pages-login.php');
+    }
+
+
+  ?>
+
+
+
+
   <!DOCTYPE html>
 <html lang="en">
 
@@ -186,18 +202,40 @@
           </ul><!-- End Messages Dropdown Items -->
 
         </li><!-- End Messages Nav -->
-
+     
         <li class="nav-item dropdown pe-3">
 
+            <?php     
+
+
+             $fname =$_SESSION['fullname']; 
+
+
+             $profile = " SELECT * FROM profiles WHERE fullname='$fname' ";
+
+             $run_pro = mysqli_query($con, $profile);
+
+             $row = mysqli_fetch_array($run_pro);
+
+
+
+
+
+            ?>
+
+
+    
+
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <img src="assets/img/<?php echo  $row['photo']; ?>" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php     echo   $row['fullname']; ?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <h6><?php     echo    $row['fullname'];
+ ?></h6>
+              <span><?php  echo $row['job'];?></span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -234,7 +272,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="pages-logout.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
