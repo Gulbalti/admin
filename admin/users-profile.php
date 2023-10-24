@@ -132,7 +132,7 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form method="post" action="users-profile.php" enctype="multipart/form-data">
+<form action="users-profile.php" method="post" enctype="multipart/form-data">
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
@@ -235,6 +235,7 @@
 <?php  
   if (isset($_POST['update'])) {
 
+    
 
         $fname = $_POST['fname'];
         $about = $_POST['about'];
@@ -248,13 +249,16 @@
           $facebook = $_POST['$facebook'];
           $linkedin = $_POST['$linkedin'];
 
+     
+      
+
  if(!mysqli_connect_errno())
    {
-      $sql = "UPDATE profiles SET fullname='$fname', photo='$photo', about='$about', company='$company', job='$job', country='$country', address='$address', phone='$phone', email ='$email', twitter`='$twitter', facebook='$facebook',linkedin='$linkedin'";
+      $sql = "UPDATE profiles SET fullname='$fname', about='$about', company='$company', job='$job', country='$country', address='$address', phone='$phone', email ='$email', twitter`='$twitter', facebook='$facebook',linkedin='$linkedin'";
       
       if(mysqli_query($con, $sql))
          echo "Data updated successfully.";
-      else
+      }else
       {
          echo "Error occurred while updating the record!<BR>";
          echo "Reason: ", mysqli_error($con);
@@ -262,7 +266,7 @@
    }
    mysqli_close($con);
  
- }
+
 ?>
 
 
