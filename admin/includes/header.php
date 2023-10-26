@@ -1,10 +1,13 @@
 
-<?php  
+<?php 
 
-    session_start(); 
+session_start();
 
-    if (!isset($_SESSION['fullname'])) {
-       $_SESSION['fullname'];
+
+    if (!isset($_SESSION['fullname'])){
+
+     $_SESSION['fullname'] = $fname;
+
       header('location:pages-login.php');
     }
 
