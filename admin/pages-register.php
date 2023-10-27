@@ -144,6 +144,8 @@ $sql = " INSERT INTO profiles (fullname,about, company, job, country, address, p
   $run = mysqli_query($con, $sql);
    if ($run > 0) {
 
+    // create sesstions
+
     session_start();
 
    $_SESSION['fullname'] = $fname;
