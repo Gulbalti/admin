@@ -6,7 +6,7 @@ session_start();
 
     if (!isset($_SESSION['fullname'])){
 
-     $_SESSION['fullname'] = $fname;
+     $fullname = $_SESSION['fullname'];
 
       header('location:pages-login.php');
     }

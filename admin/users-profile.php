@@ -249,14 +249,10 @@
           $facebook = $_POST['$facebook'];
           $linkedin = $_POST['$linkedin'];
 
-     
-      
-
- if(!mysqli_connect_errno())
-   {
+    
       $sql = "UPDATE profiles SET fullname='$fname', about='$about', company='$company', job='$job', country='$country', address='$address', phone='$phone', email ='$email', twitter`='$twitter', facebook='$facebook',linkedin='$linkedin'";
       
-      if(mysqli_query($con, $sql))
+      if(mysqli_query($con, $sql)){
          echo "Data updated successfully.";
       }else
       {
