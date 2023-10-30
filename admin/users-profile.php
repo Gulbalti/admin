@@ -132,7 +132,7 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-<form action="users-profile.php" method="post" enctype="multipart/form-data">
+<form action="" method="post" enctype="multipart/form-data">
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
@@ -149,6 +149,9 @@
                          <input name="profileid" type="hidden" class="form-control" value="<?php echo $row['profile_id']; ?>">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                       <div class="col-md-8 col-lg-9">
+
+
+                        <input name="proid" type="text" class="form-control" id="fullName" value="<?php echo $row['profile_id']; ?>">
 
 
                         <input name="fname" type="text" class="form-control" id="fullName" value="<?php echo $row['fullname']; ?>">
@@ -233,9 +236,15 @@
                   </form><!-- End Profile Edit Form -->
 
 <?php  
+
+
+include('includes/connect.php');
+
+
   if (isset($_POST['update'])) {
 
     
+        $proid = $_POST['proid'];
 
         $fname = $_POST['fname'];
         $about = $_POST['about'];
@@ -245,15 +254,13 @@
         $address = $_POST['address'];
          $phone = $_POST['phone'];
           $email = $_POST['email'];
-          $twitter = $_POST['$twitter'];
-          $facebook = $_POST['$facebook'];
-          $linkedin = $_POST['$linkedin'];
-
+       
     
-      $sql = "UPDATE profiles SET fullname='$fname', about='$about', company='$company', job='$job', country='$country', address='$address', phone='$phone', email ='$email', twitter`='$twitter', facebook='$facebook',linkedin='$linkedin'";
+      $sql = "UPDATE profiles SET fullname='$fname', about='$about', company='$company', job='$job', country='$country', address='$address', phone='$phone', email='$email' WHERE profile_id ='$proid'";
       
       if(mysqli_query($con, $sql)){
-         echo "Data updated successfully.";
+         echo "<script> alert('Data updated successfully.')</script>";
+         exit();
       }else
       {
          echo "Error occurred while updating the record!<BR>";
@@ -312,12 +319,15 @@
 
                 <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->
-                  <form>
+
+
+                
+                  <form method="post" action="users-profile.php">
 
                     <div class="row mb-3">
                       <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="password" type="password" class="form-control" id="currentPassword">
+                        <input name="password" type="test" value="<?php echo $oldpass= $row['password']; ?>" class="form-control" id="currentPassword">
                       </div>
                     </div>
 
@@ -336,9 +346,49 @@
                     </div>
 
                     <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Change Password</button>
+                      <button type="submit" name="change" class="btn btn-primary">Change Password</button>
                     </div>
                   </form><!-- End Change Password Form -->
+
+               <?php 
+
+               if (isset($_POST['change'])) {
+
+                $password = $_POST['password'];
+                $newpass = $_POST['newpassword'];
+                $renewpass = $_POST['renewpassword'];
+
+                if ($newpass !== $renewpass) {
+
+                  echo "<script>alert(Password Not Matach) </script>";
+                  exit();
+                
+                }
+                
+        
+
+               $inpass = " SELECT * FROM profiles WHERE password ='$oldpass' ";
+
+               $run = mysqli_query($con, $inpass);
+               $rowpass = mysqli_fetch_array($run);
+               if ($runpass > 0 ) {
+                 
+                 $updatepass = " UPDATE profiles SET password='$password' WHERE password='$oldpass'";
+
+                 $runpass = mysqli_query($con, $updatepass);
+
+                 if ($runpass) {
+                   echo "<script>alert('Password changed successfully') </script>";
+                 }
+               }
+               }
+
+
+
+
+
+
+               ?>
 
                 </div>
 

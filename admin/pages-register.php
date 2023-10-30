@@ -142,15 +142,13 @@ $password = $_POST['password'];
 $sql = " INSERT INTO profiles (fullname,about, company, job, country, address, phone, email, password) VALUES ('$fullname','$about', '$company', '$job', '$country', '$address',' $phone', '$email','$password')";
 
   $run = mysqli_query($con, $sql);
-   if ($run > 0) {
+   if ($run) {
 
     // create sesstions
 
-    session_start();
+   $_SESSION['fullname'] = $fullname;
 
-   $_SESSION['fullname'] = $fname;
-
-   header('location: index.php');
+   header('Location:index.php');
     
 
 }

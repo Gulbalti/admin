@@ -211,10 +211,10 @@ session_start();
             <?php     
 
 
-             $fname =$_SESSION['fullname']; 
+             $fullname =$_SESSION['fullname']; 
 
 
-             $profile = " SELECT * FROM profiles WHERE fullname='$fname' ";
+             $profile = " SELECT * FROM profiles WHERE fullname='$fullname' ";
 
              $run_pro = mysqli_query($con, $profile);
 
