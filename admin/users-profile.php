@@ -46,7 +46,7 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+              <img src="assets/img/<?php echo $row['photo']; ?>" alt="Profile" class="rounded-circle">
               <h2><?php echo $row['fullname']; ?></h2>
               <h3><?php echo $row['job']; ?></h3>
               <div class="social-links mt-2">
@@ -80,7 +80,7 @@
                 </li>
 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+                  <a class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</a>
                 </li>
 
               </ul>
@@ -254,18 +254,26 @@ include('includes/connect.php');
         $address = $_POST['address'];
          $phone = $_POST['phone'];
           $email = $_POST['email'];
-       
-    
-      $sql = "UPDATE profiles SET fullname='$fname', about='$about', company='$company', job='$job', country='$country', address='$address', phone='$phone', email='$email' WHERE profile_id ='$proid'";
+
+
+           $image = $_FILES['image']['name'];
+           $imagetmp = $_FILES['image']['tmp_name'];
+
+            // Process the uploaded file (e.g., move it to a directory, validate, etc.)
+           
+            if (move_uploaded_file($imagetmp, "assets/img/$image")) {
+                // Insert image information into the database
+
+      $sql = "UPDATE profiles SET fullname='$fname', about='$about', company='$company', job='$job', country='$country', address='$address', phone='$phone', email='$email', photo='$image' WHERE profile_id ='$proid'";
       
       if(mysqli_query($con, $sql)){
          echo "<script> alert('Data updated successfully.')</script>";
          exit();
-      }else
+      } else
       {
          echo "Error occurred while updating the record!<BR>";
          echo "Reason: ", mysqli_error($con);
-      }
+      }}
    }
    mysqli_close($con);
  
@@ -327,21 +335,21 @@ include('includes/connect.php');
                     <div class="row mb-3">
                       <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="password" type="test" value="<?php echo $oldpass= $row['password']; ?>" class="form-control" id="currentPassword">
+                        <input name="password" type="test" value="" placeholder="Please Enter Old Password" class="form-control" id="currentPassword">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="newpassword" type="password" class="form-control" id="newPassword">
+                        <input name="newpassword" value="" type="password" class="form-control" id="newPassword">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                        <input name="renewpassword" value="" type="password" class="form-control" id="renewPassword">
                       </div>
                     </div>
 
@@ -352,36 +360,47 @@ include('includes/connect.php');
 
                <?php 
 
+
+               include('includes/connect.php');
+
+
                if (isset($_POST['change'])) {
 
                 $password = $_POST['password'];
+                if (empty($password)) {
+              echo "<script> alert('Please Enter Old Password')</script>";
+
+              exit();
+            
+                }
                 $newpass = $_POST['newpassword'];
                 $renewpass = $_POST['renewpassword'];
 
                 if ($newpass !== $renewpass) {
 
-                  echo "<script>alert(Password Not Matach) </script>";
-                  exit();
+         echo "<script> alert('Password not match!')</script>";
+
+         exit();
+                
                 
                 }
                 
         
+    
+      $sql = "UPDATE profiles SET  password='$newpass' WHERE password ='$password'";
+      
+       if(mysqli_query($con, $sql)){
+         echo "<script> alert('Password changed successfully.')</script>";
+        
+      }else
+      {
+         echo "<script> alert('Your password incorrect!') </script>";
+         echo "Reason: ", mysqli_error($con);
+      }
+   }
 
-               $inpass = " SELECT * FROM profiles WHERE password ='$oldpass' ";
+ 
 
-               $run = mysqli_query($con, $inpass);
-               $rowpass = mysqli_fetch_array($run);
-               if ($runpass > 0 ) {
-                 
-                 $updatepass = " UPDATE profiles SET password='$password' WHERE password='$oldpass'";
-
-                 $runpass = mysqli_query($con, $updatepass);
-
-                 if ($runpass) {
-                   echo "<script>alert('Password changed successfully') </script>";
-                 }
-               }
-               }
 
 
 
