@@ -140,7 +140,7 @@
                         <div class="pt-2">
 
                           <input type="file" name="image" class=" btn-sm" title="Upload new profile image">
-                          <a href="delete.php?photo=<?php echo $row['profile_id']; ?>" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                          <a href="delete.php?photo=<?php echo $id=$row['profile_id']; ?>" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                         </div>
                       </div>
                     </div>
