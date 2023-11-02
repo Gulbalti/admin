@@ -25,31 +25,22 @@
             <?php     
 
 
-            if (isset($_GET['id'])) {
+            include('includes/connect.php');
 
-              $search = $_GET['id'];
+ if (isset($_POST['search'])) {
 
-             $profile = " SELECT * FROM profiles WHERE fullname='$search' limit 1 ";
-
-            }else{
-
-
-             $fullname =$_SESSION['fullname']; 
-
-
-             $profile = " SELECT * FROM profiles WHERE fullname='$fullname' ";
-
-           }
+           $query = $_POST['query'];
+ 
+            $profile = " SELECT * FROM profiles WHERE fullname LIKE '%{$query}%' ";
 
              $run_pro = mysqli_query($con, $profile);
 
              $row = mysqli_fetch_array($run_pro);
 
 
+           }
 
-
-
-            ?>
+       ?>
 
       <div class="row">
         <div class="col-xl-4">
@@ -413,11 +404,6 @@ include('includes/connect.php');
  
 
 
-
-
-
-
-
                ?>
 
                 </div>
@@ -429,6 +415,8 @@ include('includes/connect.php');
 
         </div>
       </div>
+
+  
     </section>
 
   </main><!-- End #main -->

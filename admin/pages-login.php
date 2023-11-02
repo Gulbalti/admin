@@ -5,7 +5,7 @@
     session_start(); 
 
     if (isset($_SESSION['fullname'])) {
-      $fname = $_SESSION['fullname'];
+      $fullname = $_SESSION['fullname'];
       header('location:index.php?login has been successfuly');
     }
 
@@ -130,16 +130,16 @@
                   if (isset($_POST['login'])) {
                     // code...
 
-                    $fname = $_POST['fullname'];
+                    $fullname = $_POST['fullname'];
                     $password =$_POST['password'];
                     $remember = $_POST['remember'];
 
-                    $connect = " SELECT * FROM profiles WHERE fullname='$fname' and password='$password'";
+                    $connect = " SELECT * FROM profiles WHERE fullname='$fullname' and password='$password'";
                     $run = mysqli_query($con, $connect);
                     $result = mysqli_num_rows($run);
                     if ($result > 0) {
 
-                      $_SESSION['fullname'] = $fname;
+                      $_SESSION['fullname'] = $fullname;
 
                       $cookie_name = "fullname";
                       $cookie_value = "password";

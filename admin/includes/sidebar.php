@@ -98,8 +98,8 @@
             </a>
           </li>
           <li>
-            <a href="forms-layouts.php">
-              <i class="bi bi-circle"></i><span>Form Layouts</span>
+            <a href="insert_product.php">
+              <i class="bi bi-circle"></i><span>Form Product</span>
             </a>
           </li>
           <li>
