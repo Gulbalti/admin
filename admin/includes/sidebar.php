@@ -102,6 +102,16 @@
               <i class="bi bi-circle"></i><span>Form Product</span>
             </a>
           </li>
+             <li>
+            <a href="forms-brands.php">
+              <i class="bi bi-circle"></i><span>Form Brands</span>
+            </a>
+          </li>
+              <li>
+            <a href="forms-category.php">
+              <i class="bi bi-circle"></i><span>Form Category</span>
+            </a>
+          </li>
           <li>
             <a href="forms-editors.php">
               <i class="bi bi-circle"></i><span>Form Editors</span>
@@ -123,6 +133,11 @@
           <li>
             <a href="tables-general.php">
               <i class="bi bi-circle"></i><span>General Tables</span>
+            </a>
+          </li>
+           <li>
+            <a href="tables-products.php">
+              <i class="bi bi-circle"></i><span>Products Tables</span>
             </a>
           </li>
           <li>
