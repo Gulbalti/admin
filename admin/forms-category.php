@@ -33,7 +33,7 @@
                 <div class="row mb-4">
                   <label for="inputText" class="col-sm-4 col-form-label">Category Name</label>
                   <div class="col-sm-10">
-                    <input type="text" name="category" class="form-control">
+                    <input type="text" name="category" required='required' class="form-control">
                   </div>
                 </div>
                  <div class="row mb-4">
