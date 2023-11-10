@@ -138,6 +138,33 @@
                     <div class="col-lg-9 col-md-8"><?php echo $row['email']; ?></div>
                   </div>
 
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Status</div>
+                   <?php 
+
+                   $status =$row['status'];
+
+                   if ($status =='verified') {
+                     
+                     echo '<div class="col-sm-2 col-md-4 btn-success btn">'.$status.' </div>';
+
+                   } else{
+
+                     echo '<div class="col-sm-2 col-md-4 btn-danger btn">'.$status.' </div>';
+
+
+                   }
+
+
+
+                    ?>
+
+
+
+
+
+                  </div>
+
                 </div>
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
@@ -217,6 +244,12 @@
                         <input name="email" type="email" class="form-control" id="Email" value="<?php echo $row['email']; ?>">
                       </div>
                     </div>
+                      <div class="row mb-3">
+                      <label for="Status" class="col-md-4 col-lg-3 col-form-label">Status</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="status" type="status" class="form-control" id="status" value="<?php echo $row['status']; ?>">
+                      </div>
+                    </div>
 
                     <div class="row mb-3">
                       <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
@@ -265,6 +298,7 @@ include('includes/connect.php');
         $address = $_POST['address'];
          $phone = $_POST['phone'];
           $email = $_POST['email'];
+          $status = $_POST['status'];
 
 
            $image = $_FILES['image']['name'];
@@ -275,7 +309,7 @@ include('includes/connect.php');
             if (move_uploaded_file($imagetmp, "assets/img/$image")) {
                 // Insert image information into the database
 
-      $sql = "UPDATE profiles SET fullname='$fname', about='$about', company='$company', job='$job', country='$country', address='$address', phone='$phone', email='$email', photo='$image' WHERE profile_id ='$proid'";
+      $sql = "UPDATE profiles SET fullname='$fname', about='$about', company='$company', job='$job', country='$country', address='$address', phone='$phone', email='$email', photo='$image', status='$status' WHERE profile_id ='$proid'";
       
       if(mysqli_query($con, $sql)){
          echo "<script> alert('Data updated successfully.')</script>";

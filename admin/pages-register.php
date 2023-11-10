@@ -49,7 +49,7 @@
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
               <div class="d-flex justify-content-center py-4">
-                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                <a href="index.php" class="logo d-flex align-items-center w-auto">
                   <img src="assets/img/logo.png" alt="">
                   <span class="d-none d-lg-block">Admin</span>
                 </a>
@@ -71,7 +71,7 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="subscription-input-group">
-              <form action="pages-register.php" method="post" enctype="multipart/form-data">
+              <form action="pages-register.php" method="post">
             <div class="mb-3">
                 <label for="fullname">Full Name:</label>
                 <input type="text" class="form-control" name="fullname" required>
@@ -139,19 +139,24 @@ $password = $_POST['password'];
 
 
 
-$sql = " INSERT INTO profiles (fullname,about, company, job, country, address, phone, email, password) VALUES ('$fullname','$about', '$company', '$job', '$country', '$address',' $phone', '$email','$password')";
+$sql = " INSERT INTO profiles (fullname,about, company, job, country, address, phone, email,photo,password) VALUES ('$fullname','$about', '$company', '$job', '$country', '$address',' $phone', '$email','Notimage','$password')";
 
   $run = mysqli_query($con, $sql);
    if ($run) {
 
-    // create sesstions
+session_start();
+   
+    $_SESSION['fullname'] = $fullname;
 
-   $_SESSION['fullname'] = $fullname;
 
-   header('Location:index.php');
-    
+header('location:header.php?login has been successfuly');
+                    }else{
+                      echo "<script>alert('Username or Password incorrect!') </script>";
+                    
+                  
 
-}
+                  }
+
 
 
 }

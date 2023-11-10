@@ -211,6 +211,9 @@ session_start();
             <?php     
 
 
+            session_start();
+
+
              $fullname =$_SESSION['fullname']; 
 
 
