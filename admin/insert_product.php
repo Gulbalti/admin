@@ -36,16 +36,62 @@
                 <input type="text" class="form-control" name="pro_name" required>
             </div>
             <div class="form-group">
-                <label for="brand">Brand:</label>
-                <input type="text" class="form-control" name="brand">
+                <label for="brand">Select Brand:</label>
+    <select class="form-control" name="brand" id="brand">
+      <?php
+
+      include('includes/connect.php');
+
+      $brand = "SELECT * FROM brands ";
+
+      $run = mysqli_query($con, $brand);
+
+      while($row = mysqli_fetch_array($run)){?>
+
+        <option value='<?php echo $row['brand_name']; ?>'><?php echo $row['brand_name']; ?></option>
+    
+    <?php } ?>
+</select>
+
             </div>
+           
             <div class="form-group">
-                <label for="category">Category:</label>
-                <input type="text" class="form-control" name="category">
+                             <label for="category">Select category:</label>
+    <select class="form-control" name="category" id="category">
+      <?php
+
+      include('includes/connect.php');
+
+      $category = "SELECT * FROM category ";
+
+      $run = mysqli_query($con, $category);
+
+      while($row = mysqli_fetch_array($run)){?>
+
+        <option value='<?php echo $row['category_name']; ?>'><?php echo $row['category_name']; ?></option>
+    
+    <?php } ?>
+</select>
+ 
             </div>
-            <div class="form-group">
-                <label for="user_id">User ID:</label>
-                <input type="text" class="form-control" name="user" required>
+              <div class="form-group">
+                             <label for="category">Select user:</label>
+    <select class="form-control" name="user" id="user">
+      <?php
+
+      include('includes/connect.php');
+
+      $user = "SELECT * FROM customers ";
+
+      $run = mysqli_query($con, $user);
+
+      while($row = mysqli_fetch_array($run)){?>
+
+        <option value='<?php echo $row['fullname']; ?>'><?php echo $row['fullname']; ?></option>
+    
+    <?php } ?>
+</select>
+ 
             </div>
             <div class="form-group">
                 <label for="images">Product Images:</label>

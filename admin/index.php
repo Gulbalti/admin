@@ -47,15 +47,47 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Sales <span>| Today</span></h5>
+                  <h4 class="card-title">Products Unverify <span>| Today</span></h4>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-cart"></i>
                     </div>
+                  
+                    <?php 
+
+                    include('includes/connect.php');
+
+                 $sql = "SELECT * from products where pro_status='unverify' ";
+
+if ($pro_unver = mysqli_query($con, $sql)) {
+
+    // Return the number of rows in result set
+    $rowpro = mysqli_num_rows( $pro_unver );
+    
+
+ } ?>
                     <div class="ps-3">
-                      <h6>145</h6>
-                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                      <h6><?php echo $rowpro; ?></h6>
+
+                      <?php 
+
+                      if ($rowpro >= 1000/100 ) {
+                      
+                      echo '<span class="text-success small pt-1 fw-bold">'.$rowpro.'%</span> <span class="text-muted small pt-2 ps-1">increase</span>';
+
+                      } else {
+                      
+                      echo '<span class="text-danger small pt-1 fw-bold">'.$rowpro.'%</span> <span class="text-muted small pt-2 ps-1">decrease </span>';
+
+                      }
+
+
+
+
+
+                      ?>
+                 
 
                     </div>
                   </div>
@@ -81,17 +113,50 @@
                   </ul>
                 </div>
 
+
                 <div class="card-body">
-                  <h5 class="card-title">Revenue <span>| This Month</span></h5>
+                  <h4 class="card-title">Products Live <span>| This Month</span></h4>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
+                      <i class="bi bi-diagram-2-fill"></i>
                     </div>
-                    <div class="ps-3">
-                      <h6>$3,264</h6>
-                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
+                     <?php 
+
+                    include('includes/connect.php');
+
+                 $sql = "SELECT * from products where pro_status='verified' ";
+
+if ($product = mysqli_query($con, $sql)) {
+
+    // Return the number of rows in result set
+    $rowcount = mysqli_num_rows( $product );
+    
+
+ } ?>
+                    <div class="ps-3">
+                      <h6><?php echo $rowcount; ?></h6>
+
+                      <?php 
+
+                      if ($rowcount >= 1000/100 ) {
+                      
+                      echo '<span class="text-success small pt-1 fw-bold">'.$rowcount.'%</span> <span class="text-muted small pt-2 ps-1">increase</span>';
+
+                      } else {
+                      
+                      echo '<span class="text-danger small pt-1 fw-bold">'.$rowcount.'%</span> <span class="text-muted small pt-2 ps-1">decrease </span>';
+
+                      }
+
+
+
+
+
+                      ?>
+                 
+                   
                     </div>
                   </div>
                 </div>
@@ -118,16 +183,48 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Customers <span>| This Year</span></h5>
+                  <h4 class="card-title">Customers <span>| This Year</span></h4>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-people"></i>
                     </div>
-                    <div class="ps-3">
-                      <h6>1244</h6>
-                      <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
 
+                 
+                     <?php 
+
+                    include('includes/connect.php');
+
+                 $sql = "SELECT * from customers ";
+
+if ($result = mysqli_query($con, $sql)) {
+
+    // Return the number of rows in result set
+    $rowcount = mysqli_num_rows( $result );
+    
+
+ } ?>
+                    <div class="ps-3">
+                      <h6><?php echo $rowcount; ?></h6>
+
+                      <?php 
+
+                      if ($rowcount >= 1000/100 ) {
+                      
+                      echo '<span class="text-success small pt-1 fw-bold">'.$rowcount.'%</span> <span class="text-muted small pt-2 ps-1">increase</span>';
+
+                      } else {
+                      
+                      echo '<span class="text-danger small pt-1 fw-bold">'.$rowcount.'%</span> <span class="text-muted small pt-2 ps-1">decrease </span>';
+
+                      }
+
+
+
+
+
+                      ?>
+                 
                     </div>
                   </div>
 
@@ -154,7 +251,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Reports <span>/Today</span></h5>
+                  <h4 class="card-title">Reports <span>/Today</span></h4>
 
                   <!-- Line Chart -->
                   <div id="reportsChart"></div>
@@ -166,7 +263,7 @@
                           name: 'Sales',
                           data: [31, 40, 28, 51, 42, 82, 56],
                         }, {
-                          name: 'Revenue',
+                          name: 'Products',
                           data: [11, 32, 45, 32, 34, 52, 41]
                         }, {
                           name: 'Customers',
@@ -236,54 +333,74 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+                  <h4 class="card-title">Recent Posts <span>| Today</span></h4>
 
                   <table class="table table-borderless datatable">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">PID#</th>
                         <th scope="col">Customer</th>
                         <th scope="col">Product</th>
-                        <th scope="col">Price</th>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Category</th>
                         <th scope="col">Status</th>
+
                       </tr>
                     </thead>
                     <tbody>
+                       <?php 
+
+                    include('includes/connect.php');
+
+                 $sql = "SELECT * from products ";
+
+                     $run = mysqli_query($con, $sql);
+
+                     while($row = mysqli_fetch_array($run)){  ?>
                       <tr>
-                        <th scope="row"><a href="#">#2457</a></th>
-                        <td>Brandon Jacob</td>
-                        <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                        <td>$64</td>
-                        <td><span class="badge bg-success">Approved</span></td>
+                        <th scope="row"><a href="#"><?php echo $row['product_id']; ?></a></th>
+                        <td><?php echo $row['user']; ?></td>
+                     <td><?php echo $row['pro_name']; ?></td>
+                    <td><?php echo $row['brand']; ?></td>
+                    <td><?php echo $row['category']; ?></td>
+
+
+                      
+                        <td>
+                            <?php 
+
+                             $status= $row['pro_status']; 
+
+                              if ($status =='verified') {
+                              // code...
+                              echo' <span class="badge bg-success">'.$status.'</span></td>';
+                            }
+
+
+                              if ($status =='pendding') {
+                              // code...
+                              echo' <span class="badge bg-warning">'.$status.'</span></td>';
+                            }
+                                  if ($status =='unverify') {
+                              // code...
+                              echo' <span class="badge bg-danger">'.$status.'</span></td>';
+                            }
+
+
+
+
+
+
+                            ?>
+                          </td>
+
+
+
+
                       </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2147</a></th>
-                        <td>Bridie Kessler</td>
-                        <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                        <td>$47</td>
-                        <td><span class="badge bg-warning">Pending</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2049</a></th>
-                        <td>Ashleigh Langosh</td>
-                        <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                        <td>$147</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Angus Grady</td>
-                        <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                        <td>$67</td>
-                        <td><span class="badge bg-danger">Rejected</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Raheem Lehner</td>
-                        <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                        <td>$165</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
+
+                    <?php } ?>
+                      
                     </tbody>
                   </table>
 
@@ -310,7 +427,7 @@
                 </div>
 
                 <div class="card-body pb-0">
-                  <h5 class="card-title">Top Selling <span>| Today</span></h5>
+                  <h4 class="card-title">Top Selling <span>| Today</span></h4>
 
                   <table class="table table-borderless">
                     <thead>
@@ -388,7 +505,7 @@
             </div>
 
             <div class="card-body">
-              <h5 class="card-title">Recent Activity <span>| Today</span></h5>
+              <h4 class="card-title">Recent Activity <span>| Today</span></h4>
 
               <div class="activity">
 
@@ -461,7 +578,7 @@
             </div>
 
             <div class="card-body pb-0">
-              <h5 class="card-title">Budget Report <span>| This Month</span></h5>
+              <h4 class="card-title">Budget Report <span>| This Month</span></h4>
 
               <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
 
@@ -535,7 +652,7 @@
             </div>
 
             <div class="card-body pb-0">
-              <h5 class="card-title">Website Traffic <span>| Today</span></h5>
+              <h4 class="card-title">Website Traffic <span>| Today</span></h4>
 
               <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
 
@@ -613,7 +730,7 @@
             </div>
 
             <div class="card-body pb-0">
-              <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
+              <h4 class="card-title">News &amp; Updates <span>| Today</span></h4>
 
               <div class="news">
                 <div class="post-item clearfix">

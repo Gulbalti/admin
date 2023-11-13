@@ -61,6 +61,11 @@
             </a>
           </li>
           <li>
+            <a href="tables-customers.php">
+              <i class="bi bi-circle"></i><span>Customers Tables</span>
+            </a>
+          </li>
+          <li>
             <a href="tables-data.php">
               <i class="bi bi-circle"></i><span>Data Tables</span>
             </a>

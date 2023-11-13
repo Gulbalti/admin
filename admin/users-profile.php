@@ -31,7 +31,16 @@
 
              $profile = " SELECT * FROM profiles WHERE fullname='$search' limit 1 ";
 
-            }else{
+            }
+
+            if (isset($_GET['edit'])) {
+
+              $c_id = $_GET['edit'];
+
+             $profile = " SELECT * FROM customers WHERE customer_id ='$c_id'";
+
+            }
+            else{
 
 
              $fullname =$_SESSION['fullname']; 
