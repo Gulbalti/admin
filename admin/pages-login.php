@@ -141,12 +141,16 @@
 
                       $_SESSION['fullname'] = $fullname;
 
+                      $login=" INSERT INTO login_status (fullname,status) VALUES ('$fullname','active')";
+                      $run_status = mysqli_query($con, $login);
+                      if ($run_status) {
+
                       $cookie_name = "fullname";
                       $cookie_value = "password";
 setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
 
 header('location:index.php?login has been successfuly');
-                    }else{
+                    } } else{
                       echo "<script>alert('Username or Password incorrect!') </script>";
                     
                   

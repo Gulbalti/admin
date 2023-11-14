@@ -505,58 +505,63 @@ if ($result = mysqli_query($con, $sql)) {
             </div>
 
             <div class="card-body">
-              <h4 class="card-title">Recent Activity <span>| Today</span></h4>
+              <h4 class="card-title">Active Users <span>| Today</span></h4>
 
               <div class="activity">
 
+                <?php 
+
+                include('includes/connect.php');
+
+                $active =" SELECT * FROM login_status  ";
+                $run_active = mysqli_query($con, $active);
+
+                while($row = mysqli_fetch_array($run_active)){ ?>
+
                 <div class="activity-item d-flex">
-                  <div class="activite-label">32 min</div>
-                  <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                  <div class="activite-label"><?php echo $row['date']; ?></div><br><br>
+                  <?php 
+
+                   $status = $row['status'];
+
+
+                  if ($status =='active') {
+                    echo "<i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>";
+                  }else {
+                    echo "<i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>";
+                  }
+
+
+
+
+                  ?>
                   <div class="activity-content">
-                    Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
+                    <a href="#" class="fw-bold text-dark"><?php echo  $row['fullname'];?></a>
+                    <a href="index.php?remove=<?php echo $row['customer_id'];?>" class="fw-bold bi bi-trash"></a>
+
                   </div>
                 </div><!-- End activity item-->
 
-                <div class="activity-item d-flex">
-                  <div class="activite-label">56 min</div>
-                  <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                  <div class="activity-content">
-                    Voluptatem blanditiis blanditiis eveniet
-                  </div>
-                </div><!-- End activity item-->
+              <?php }
 
-                <div class="activity-item d-flex">
-                  <div class="activite-label">2 hrs</div>
-                  <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                  <div class="activity-content">
-                    Voluptates corrupti molestias voluptatem
-                  </div>
-                </div><!-- End activity item-->
 
-                <div class="activity-item d-flex">
-                  <div class="activite-label">1 day</div>
-                  <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
-                  <div class="activity-content">
-                    Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati voluptatem</a> tempore
-                  </div>
-                </div><!-- End activity item-->
+              if (isset($_GET['remove'])) {
+                
+                $remove_id = $_GET['remove'];
 
-                <div class="activity-item d-flex">
-                  <div class="activite-label">2 days</div>
-                  <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                  <div class="activity-content">
-                    Est sit eum reiciendis exercitationem
-                  </div>
-                </div><!-- End activity item-->
+                $active =" DELETE FROM login_status WHERE customer_id='$remove_id' ";
+                $run_active = mysqli_query($con, $active);
+              }
 
-                <div class="activity-item d-flex">
-                  <div class="activite-label">4 weeks</div>
-                  <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                  <div class="activity-content">
-                    Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
-                  </div>
-                </div><!-- End activity item-->
 
+
+
+
+
+
+               ?>
+
+              
               </div>
 
             </div>
