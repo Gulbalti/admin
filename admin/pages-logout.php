@@ -5,11 +5,11 @@ include('includes/connect.php');
 
     session_start(); 
 
-    if (isset($_SESSION['fullname'])) {
+    if (isset($_SESSION['name'])) {
        
-       $fname=$_SESSION['fullname'];
+       $name=$_SESSION['name'];
 
-      $login=" INSERT INTO login_status (fullname,status) VALUES ('$fname','inactive')";
+      $login=" INSERT INTO login_status (name,status) VALUES ('$name','inactive')";
       $run_status = mysqli_query($con, $login);
       if ($run_status) {
 

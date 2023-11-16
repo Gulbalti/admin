@@ -2,6 +2,7 @@
 
   <!-- ======= Header ======= -->
 <?php include('includes/header.php');?>
+      
 
   <!-- End Header -->
 
@@ -195,7 +196,7 @@ if ($product = mysqli_query($con, $sql)) {
 
                     include('includes/connect.php');
 
-                 $sql = "SELECT * from customers ";
+                 $sql = "SELECT * from users ";
 
 if ($result = mysqli_query($con, $sql)) {
 
@@ -505,9 +506,14 @@ if ($result = mysqli_query($con, $sql)) {
             </div>
 
             <div class="card-body">
-              <h4 class="card-title">Active Users <span>| Today</span></h4>
 
-              <div class="activity">
+              <h4 class="card-title">Active Users <span>| Today</span></h4>
+ 
+
+              <div class="activity ">
+                 <!-- Your content goes here -->
+
+    
 
                 <?php 
 
@@ -536,7 +542,7 @@ if ($result = mysqli_query($con, $sql)) {
 
                   ?>
                   <div class="activity-content">
-                    <a href="#" class="fw-bold text-dark"><?php echo  $row['fullname'];?></a>
+                    <a href="#" class="fw-bold text-dark"><?php echo  $row['name'];?></a>
                     <a href="index.php?remove=<?php echo $row['customer_id'];?>" class="fw-bold bi bi-trash"></a>
 
                   </div>
@@ -563,6 +569,7 @@ if ($result = mysqli_query($con, $sql)) {
 
               
               </div>
+                           
 
             </div>
           </div><!-- End Recent Activity -->

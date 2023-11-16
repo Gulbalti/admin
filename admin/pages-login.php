@@ -1,30 +1,23 @@
 
-    <?php 
+<?php 
+
+session_start();
 
 
-    session_start(); 
+    if (isset($_SESSION['name'])){
 
-    if (isset($_SESSION['fullname'])) {
-      $fullname = $_SESSION['fullname'];
-      header('location:index.php?login has been successfuly');
+     $name = $_SESSION['name'];
+
+      header('location:index.php?login=has been successfuly');
     }
 
 
-    include('includes/connect.php');
+  ?>
 
 
 
-
-
-
-
-
-    ?>
-
-
-
-<!DOCTYPE html>
 <html lang="en">
+<!DOCTYPE html>
 
 <head>
   <meta charset="utf-8">
@@ -91,13 +84,13 @@
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" method="post" novalidate action="pages-login.php">
+                  <form class="row g-3 "  method="post" action="pages-login.php">
 
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Full Name</label>
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="fullname" class="form-control" id="yourUsername" required>
+                        <input type="text" name="name" class="form-control" id="yourUsername" required>
                         <div class="invalid-feedback">Please enter your Full Name.</div>
                       </div>
                     </div>
@@ -105,15 +98,10 @@
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Password</label>
                       <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
+                     <div class="invalid-feedback">Please enter your password!</div>
                     </div>
 
-                    <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-                        <label class="form-check-label" for="rememberMe">Remember me</label>
-                      </div>
-                    </div>
+                   
                     <div class="col-12">
                       <button class="btn btn-primary w-100" name="login" type="submit">Login</button>
                     </div>
@@ -128,28 +116,24 @@
                   include('includes/connect.php');
 
                   if (isset($_POST['login'])) {
-                    // code...
 
-                    $fullname = $_POST['fullname'];
+                    $name = $_POST['name'];
                     $password =$_POST['password'];
-                    $remember = $_POST['remember'];
 
-                    $connect = " SELECT * FROM profiles WHERE fullname='$fullname' and password='$password'";
+                    $connect = " SELECT * FROM users WHERE name='$name' and password='$password'";
                     $run = mysqli_query($con, $connect);
                     $result = mysqli_num_rows($run);
                     if ($result > 0) {
+       
 
-                      $_SESSION['fullname'] = $fullname;
+     $_SESSION['name']=$name; 
 
-                      $login=" INSERT INTO login_status (fullname,status) VALUES ('$fullname','active')";
-                      $run_status = mysqli_query($con, $login);
-                      if ($run_status) {
+    $login=" INSERT INTO login_status (name,status) VALUES ('$name','active')";
+     $run_status = mysqli_query($con, $login);
+  if ($run_status) {
 
-                      $cookie_name = "fullname";
-                      $cookie_value = "password";
-setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+//setcookie($name, $password, time() + (86400 * 30), "/"); // 86400 = 1 day
 
-header('location:index.php?login has been successfuly');
                     } } else{
                       echo "<script>alert('Username or Password incorrect!') </script>";
                     

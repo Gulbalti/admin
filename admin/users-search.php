@@ -7,7 +7,32 @@
   <?php include('includes/sidebar.php'); ?>
  <!-- End Sidebar-->
 
+
+
+
   <main id="main" class="main">
+
+
+
+          <?php     
+
+
+            include('includes/connect.php');
+
+ if (isset($_POST['search'])) {
+
+           $query = $_POST['query'];
+ 
+            $profile = " SELECT * FROM users WHERE name LIKE '%{$query}%' ";
+
+             $run_pro = mysqli_query($con, $profile);
+
+             $row = mysqli_fetch_array($run_pro);
+
+
+           
+
+       ?>
 
     <div class="pagetitle">
       <h1>Profile</h1>
@@ -22,25 +47,7 @@
 
     <section class="section profile">
 
-            <?php     
-
-
-            include('includes/connect.php');
-
- if (isset($_POST['search'])) {
-
-           $query = $_POST['query'];
- 
-            $profile = " SELECT * FROM profiles WHERE fullname LIKE '%{$query}%' ";
-
-             $run_pro = mysqli_query($con, $profile);
-
-             $row = mysqli_fetch_array($run_pro);
-
-
-           }
-
-       ?>
+   
 
       <div class="row">
         <div class="col-xl-4">
@@ -49,7 +56,7 @@
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
               <img src="assets/img/<?php echo $row['photo']; ?>" alt="Profile" class="rounded-circle">
-              <h2><?php echo $row['fullname']; ?></h2>
+              <h2><?php echo $row['name']; ?></h2>
               <h3><?php echo $row['job']; ?></h3>
               <div class="social-links mt-2">
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -95,8 +102,8 @@
                   <h5 class="card-title">Profile Details</h5>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $row['fullname']; ?></div>
+                    <div class="col-lg-3 col-md-4 label "> Name</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $row['name']; ?></div>
                   </div>
 
                   <div class="row">
@@ -149,14 +156,14 @@
 
                     <div class="row mb-3">
                          <input name="profileid" type="hidden" class="form-control" value="<?php echo $row['profile_id']; ?>">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+                      <label for="name" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                       <div class="col-md-8 col-lg-9">
 
 
-                        <input name="proid" type="text" class="form-control" id="fullName" value="<?php echo $row['profile_id']; ?>">
+                        <input name="proid" type="text" class="form-control" id="name" value="<?php echo $row['profile_id']; ?>">
 
 
-                        <input name="fname" type="text" class="form-control" id="fullName" value="<?php echo $row['fullname']; ?>">
+                        <input name="fname" type="text" class="form-control" id="name" value="<?php echo $row['name']; ?>">
                       </div>
                     </div>
 
@@ -248,7 +255,7 @@ include('includes/connect.php');
     
         $proid = $_POST['proid'];
 
-        $fname = $_POST['fname'];
+        $name = $_POST['name'];
         $about = $_POST['about'];
         $company = $_POST['company'];
         $job = $_POST['job'];
@@ -266,7 +273,7 @@ include('includes/connect.php');
             if (move_uploaded_file($imagetmp, "assets/img/$image")) {
                 // Insert image information into the database
 
-      $sql = "UPDATE profiles SET fullname='$fname', about='$about', company='$company', job='$job', country='$country', address='$address', phone='$phone', email='$email', photo='$image' WHERE profile_id ='$proid'";
+      $sql = "UPDATE users SET name='$name', about='$about', company='$company', job='$job', country='$country', address='$address', phone='$phone', email='$email', photo='$image' WHERE user_id ='$proid'";
       
       if(mysqli_query($con, $sql)){
          echo "<script> alert('Data updated successfully.')</script>";
@@ -291,7 +298,7 @@ include('includes/connect.php');
                   <form>
 
                     <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email Notifications</label>
+                      <label for="name" class="col-md-4 col-lg-3 col-form-label">Email Notifications</label>
                       <div class="col-md-8 col-lg-9">
                         <div class="form-check">
                           <input class="form-check-input" type="checkbox" id="changesMade" checked>
@@ -389,7 +396,7 @@ include('includes/connect.php');
                 
         
     
-      $sql = "UPDATE profiles SET  password='$newpass' WHERE password ='$password'";
+      $sql = "UPDATE users SET  password='$newpass' WHERE password ='$password'";
       
        if(mysqli_query($con, $sql)){
          echo "<script> alert('Password changed successfully.')</script>";
@@ -418,6 +425,26 @@ include('includes/connect.php');
 
   
     </section>
+
+
+<?php } else{
+
+
+echo "<div class='cart'> 
+
+<div class='cart-title'> Search Status</div>
+<div class='card-body'> No content found</div>
+
+
+
+</div>";
+
+
+ }
+  
+
+
+  ?>
 
   </main><!-- End #main -->
 

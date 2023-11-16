@@ -4,9 +4,9 @@
 session_start();
 
 
-    if (!isset($_SESSION['fullname'])){
+    if (!isset($_SESSION['name'])){
 
-     $fullname = $_SESSION['fullname'];
+     $name = $_SESSION['name'];
 
       header('location:pages-login.php');
     }
@@ -214,10 +214,10 @@ session_start();
             session_start();
 
 
-             $fullname =$_SESSION['fullname']; 
+             $name =$_SESSION['name']; 
 
 
-             $profile = " SELECT * FROM profiles WHERE fullname='$fullname' ";
+             $profile = " SELECT * FROM users WHERE name='$name' ";
 
              $run_pro = mysqli_query($con, $profile);
 
@@ -234,12 +234,12 @@ session_start();
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/<?php echo  $row['photo']; ?>" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><?php     echo   $row['fullname']; ?></span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php     echo   $row['name']; ?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6><?php     echo    $row['fullname'];
+              <h6><?php     echo    $row['name'];
  ?></h6>
               <span><?php  echo $row['job'];?></span>
             </li>

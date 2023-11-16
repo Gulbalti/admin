@@ -11,12 +11,12 @@
  <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Product Tables</h1>
+      <h1>Users Tables</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Home</a></li>
           <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item active">Customers</li>
+          <li class="breadcrumb-item active">Users</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -27,7 +27,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Customers Table</h5>
+              <h5 class="card-title">Users Table</h5>
 
               <!-- Products Table -->
               <table class="table">
@@ -50,12 +50,12 @@
 
                   include('includes/connect.php');
 
-                  $customers = "SELECT * FROM customers ";
-                  $run = mysqli_query($con, $customers);
+                  $users = "SELECT * FROM users ";
+                  $run = mysqli_query($con, $users);
                   while($row= mysqli_fetch_array($run)){  ?>
                   <tr>
-                    <th scope="row"><?php echo $row['customer_id']; ?></th>
-                    <td><?php echo $row['fullname']; ?></td>
+                    <th scope="row"><?php echo $row['user_id']; ?></th>
+                    <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['job']; ?></td>
 
@@ -92,7 +92,7 @@
 
                             ?>
                           </td>
-                          <th><a href="users-profile.php?edit=<?php echo $row['customer_id']; ?>">Edit</a></th>
+                          <th><a href="users-profile.php?edit=<?php echo $row['user_id']; ?>">Edit</a></th>
 
 
 
