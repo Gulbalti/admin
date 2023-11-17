@@ -543,19 +543,19 @@ if ($result = mysqli_query($con, $sql)) {
                   ?>
                   <div class="activity-content">
                     <a href="#" class="fw-bold text-dark"><?php echo  $row['name'];?></a>
-                    <a href="index.php?remove=<?php echo $row['customer_id'];?>" class="fw-bold bi bi-trash"></a>
+                    <a href="index.php?remove=<?php echo $row['user_id'];?>" class="fw-bold bi bi-trash"></a>
 
                   </div>
                 </div><!-- End activity item-->
 
-              <?php }
+              <?php } 
 
 
               if (isset($_GET['remove'])) {
                 
                 $remove_id = $_GET['remove'];
 
-                $active =" DELETE FROM login_status WHERE customer_id='$remove_id' ";
+                $active =" DELETE FROM login_status WHERE user_id='$remove_id' ";
                 $run_active = mysqli_query($con, $active);
               }
 
@@ -569,6 +569,24 @@ if ($result = mysqli_query($con, $sql)) {
 
               
               </div>
+
+               <script>
+        // Assume you have a JSON response
+        var jsonResponse = {
+            message: "Page will reload in 10 seconds."
+        };
+
+        // Convert the JSON object to a string
+        var jsonString = JSON.stringify(jsonResponse);
+
+        // Display the JSON message on the page
+        document.body.innerHTML += '<div class="activity">' + jsonString + '</div>';
+
+        // Reload the page after 3 seconds
+        setTimeout(function() {
+            location.reload();
+        }, 10000);
+    </script>
                            
 
             </div>
