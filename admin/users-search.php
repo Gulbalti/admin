@@ -149,18 +149,18 @@
                         <div class="pt-2">
 
                           <input type="file" name="image" class=" btn-sm" title="Upload new profile image">
-                          <a href="users-delete.php?photo=<?php echo $id=$row['profile_id']; ?>" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                          <a href="users-delete.php?photo=<?php echo $id=$row['user_id']; ?>" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                         </div>
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                         <input name="profileid" type="hidden" class="form-control" value="<?php echo $row['profile_id']; ?>">
-                      <label for="name" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+                         <input name="profileid" type="hidden" class="form-control" value="<?php echo $row['user_id']; ?>">
+                      <label for="name" class="col-md-4 col-lg-3 col-form-label">Name</label>
                       <div class="col-md-8 col-lg-9">
 
 
-                        <input name="proid" type="text" class="form-control" id="name" value="<?php echo $row['profile_id']; ?>">
+                        <input name="proid" type="text" class="form-control" id="name" value="<?php echo $row['user_id']; ?>">
 
 
                         <input name="fname" type="text" class="form-control" id="name" value="<?php echo $row['name']; ?>">
@@ -427,24 +427,7 @@ include('includes/connect.php');
     </section>
 
 
-<?php } else{
-
-
-echo "<div class='cart'> 
-
-<div class='cart-title'> Search Status</div>
-<div class='card-body'> No content found</div>
-
-
-
-</div>";
-
-
- }
-  
-
-
-  ?>
+<?php } ?>
 
   </main><!-- End #main -->
 

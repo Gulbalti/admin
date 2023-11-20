@@ -184,7 +184,7 @@ if ($product = mysqli_query($con, $sql)) {
                 </div>
 
                 <div class="card-body">
-                  <h4 class="card-title">Customers <span>| This Year</span></h4>
+                  <h4 class="card-title">Users <span>| This Year</span></h4>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -256,6 +256,7 @@ if ($result = mysqli_query($con, $sql)) {
 
                   <!-- Line Chart -->
                   <div id="reportsChart"></div>
+
 
                   <script>
                     document.addEventListener("DOMContentLoaded", () => {
@@ -570,101 +571,13 @@ if ($result = mysqli_query($con, $sql)) {
               
               </div>
 
-               <script>
-        // Assume you have a JSON response
-        var jsonResponse = {
-            message: "Page will reload in 10 seconds."
-        };
-
-        // Convert the JSON object to a string
-        var jsonString = JSON.stringify(jsonResponse);
-
-        // Display the JSON message on the page
-        document.body.innerHTML += '<div class="activity">' + jsonString + '</div>';
-
-        // Reload the page after 3 seconds
-        setTimeout(function() {
-            location.reload();
-        }, 10000);
-    </script>
+        
                            
 
             </div>
           </div><!-- End Recent Activity -->
 
-          <!-- Budget Report -->
-          <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
-
-            <div class="card-body pb-0">
-              <h4 class="card-title">Budget Report <span>| This Month</span></h4>
-
-              <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
-
-              <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  var budgetChart = echarts.init(document.querySelector("#budgetChart")).setOption({
-                    legend: {
-                      data: ['Allocated Budget', 'Actual Spending']
-                    },
-                    radar: {
-                      // shape: 'circle',
-                      indicator: [{
-                          name: 'Sales',
-                          max: 6500
-                        },
-                        {
-                          name: 'Administration',
-                          max: 16000
-                        },
-                        {
-                          name: 'Information Technology',
-                          max: 30000
-                        },
-                        {
-                          name: 'Customer Support',
-                          max: 38000
-                        },
-                        {
-                          name: 'Development',
-                          max: 52000
-                        },
-                        {
-                          name: 'Marketing',
-                          max: 25000
-                        }
-                      ]
-                    },
-                    series: [{
-                      name: 'Budget vs spending',
-                      type: 'radar',
-                      data: [{
-                          value: [4200, 3000, 20000, 35000, 50000, 18000],
-                          name: 'Allocated Budget'
-                        },
-                        {
-                          value: [5000, 14000, 28000, 26000, 42000, 21000],
-                          name: 'Actual Spending'
-                        }
-                      ]
-                    }]
-                  });
-                });
-              </script>
-
-            </div>
-          </div><!-- End Budget Report -->
+        
 
           <!-- Website Traffic -->
           <div class="card">
@@ -797,6 +710,25 @@ if ($result = mysqli_query($con, $sql)) {
 
             </div>
           </div><!-- End News & Updates -->
+
+
+                 <script>
+        // Assume you have a JSON response
+        var jsonResponse = {
+            message: "Page will reload in 10 seconds."
+        };
+
+        // Convert the JSON object to a string
+        var jsonString = JSON.stringify(jsonResponse);
+
+        // Display the JSON message on the page
+        document.body.innerHTML += '<div class="card">' + jsonString + '</div>';
+
+        // Reload the page after 3 seconds
+        setTimeout(function() {
+            location.reload();
+        }, 10000);
+    </script>
 
         </div><!-- End Right side columns -->
 

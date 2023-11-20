@@ -56,8 +56,21 @@
             </a>
           </li>
            <li>
-            <a href="tables-products.php">
-              <i class="bi bi-circle"></i><span>Products Tables</span>
+            <a href="insert-brands.php">
+              <i class="bi bi-circle"></i><span>Insert Brands</span>
+            </a>
+               <a href="tables-brands.php">
+              <i class="bi bi-circle"></i><span>Table Brands</span>
+            </a>
+          </li>
+           <li>
+            <a href="insert-products.php">
+              <i class="bi bi-circle"></i><span>Insert Products </span>
+            </a>
+          </li>
+             <li>
+            <a href="insert-category.php">
+              <i class="bi bi-circle"></i><span>Insert Category</span>
             </a>
           </li>
           <li>
@@ -78,21 +91,17 @@
           <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="charts-chartjs.php">
-              <i class="bi bi-circle"></i><span>Chart.js</span>
+            <li>
+            <a href="chartpie.php">
+              <i class="bi bi-circle"></i><span>Chart pie</span>
             </a>
           </li>
-          <li>
-            <a href="charts-apexcharts.php">
-              <i class="bi bi-circle"></i><span>ApexCharts</span>
+           <li>
+            <a href="chartbar.php">
+              <i class="bi bi-circle"></i><span>Chart Bar</span>
             </a>
           </li>
-          <li>
-            <a href="charts-echarts.php">
-              <i class="bi bi-circle"></i><span>ECharts</span>
-            </a>
-          </li>
+         
         </ul>
       </li><!-- End Charts Nav -->
 
