@@ -118,7 +118,7 @@ if (isset($_POST['update'])) {
 
 }
 
-$conn->close();
+
 
 ?>
 

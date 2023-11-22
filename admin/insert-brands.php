@@ -33,7 +33,8 @@
               <h5 class="card-title">Insert Brands</h5>
 
                <!-- Form Bands -->
-              <form method="post" action="insert-brands.php" enctype="multipart/form-data">
+               <form method="post" action="insert-brands.php" enctype="multipart/form-data">
+
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">Brand Name</label>
                   <div class="col-sm-10">
@@ -72,10 +73,9 @@
 if (isset($_POST['addbrand'])) {
     $brand = $_POST['brand'];
     $bicon = $_FILES['brand_icon']['name'];
-    $bicontmp = $_FILES['brand_icon']['tmp_name'];
+    $brandtmp = $_FILES['brand_icon']['tmp_name'];
 
-     move_uploaded_file($bicontmp, "assets/brand_images/$bicon");
-
+     move_uploaded_file($brandtmp, "assets/brand_images/$bicon");
 
 
     // Insert product details into the database (sanitize and validate inputs as needed)
@@ -124,7 +124,7 @@ if (isset($_POST['addbrand'])) {
                   <tr>
                     <th><?php echo $row['brand_id']; ?></th>
                     <td><?php echo $row['brand_name']; ?></td>
-                  <td><img width="100" height="100"src="assets/brand_images/<?php echo $row['brand_icon']; ?>"></td>
+                  <td><img width="100" height="100" src="assets/brand_images/<?php echo $row['brand_icon']; ?>"></td>
 
                   <td><a class="btn btn-warning" href="edit-brands.php?edit=<?php echo $row['brand_id']; ?>">Edit</a></td>
                  <td><a class="btn btn-danger"  href="insert-brands.php?delb=<?php echo $row['brand_id']; ?>">Delete</a></td>

@@ -341,11 +341,11 @@ if ($result = mysqli_query($con, $sql)) {
                     <thead>
                       <tr>
                         <th scope="col">PID#</th>
-                        <th scope="col">Customer</th>
+                        <th scope="col">User</th>
                         <th scope="col">Product</th>
-                        <th scope="col">Brand</th>
-                        <th scope="col">Category</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Update</th>
+                        <th scope="col">Delete</th>
 
                       </tr>
                     </thead>
@@ -363,12 +363,7 @@ if ($result = mysqli_query($con, $sql)) {
                         <th scope="row"><a href="#"><?php echo $row['product_id']; ?></a></th>
                         <td><?php echo $row['user']; ?></td>
                      <td><?php echo $row['pro_name']; ?></td>
-                    <td><?php echo $row['brand']; ?></td>
-                    <td><?php echo $row['category']; ?></td>
-
-
-                      
-                        <td>
+                     <td>
                             <?php 
 
                              $status= $row['pro_status']; 
@@ -395,13 +390,37 @@ if ($result = mysqli_query($con, $sql)) {
 
                             ?>
                           </td>
+                          <td><a class="btn btn-warning" href="edit_product.php?edit=<?php echo $row['product_id']; ?>">Edit</a></td>
+                               <td><a class="btn btn-danger" href="index.php?del=<?php echo $row['product_id']; ?>">Delete</a></td>
 
 
 
 
                       </tr>
 
-                    <?php } ?>
+                    <?php } 
+
+                    if (isset($_GET['del'])) {
+
+
+                      $delid = $_GET['del'];
+
+                      $prodel = "DELETE FROM products WHERE product_id='$delid'";
+
+                      $run = mysqli_query($con, $prodel);
+
+                      if($run){
+                      echo "<script> window.open('index.php?deleted=unverify product deleted','_self')</script>";
+                      }
+                      // code...
+                    }
+
+
+
+
+
+
+                    ?>
                       
                     </tbody>
                   </table>
@@ -579,6 +598,51 @@ if ($result = mysqli_query($con, $sql)) {
 
         
 
+
+          <!-- News & Updates Traffic -->
+          <div class="card">
+            <div class="filter">
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                <li class="dropdown-header text-start">
+                  <h6>Filter</h6>
+                </li>
+
+                <li><a class="dropdown-item" href="#">Today</a></li>
+                <li><a class="dropdown-item" href="#">This Month</a></li>
+                <li><a class="dropdown-item" href="#">This Year</a></li>
+              </ul>
+            </div>
+
+            <div class="card-body pb-0">
+              <h4 class="card-title">News &amp; Updates <span>| Today</span></h4>
+
+              <div class="news">
+
+                <?php 
+
+                $news = " SELECT * FROM news_and_articles ";
+
+                $run_news = mysqli_query($con, $news);
+
+                foreach ($run_news as  $row) {  ?>
+                <div class="post-item clearfix">
+                  <img src="assets/img/<?php echo $row['news_image']; ?>" alt="">
+                  <h4><a href="#"><?php echo $row['news_title']; ?></a></h4>
+                  <p><?php echo $row['news_description']; ?></p>
+                 <p><b><?php echo $row['news_date']; ?></b></p>
+
+                </div>
+
+              <?php } ?>
+
+               
+              </div><!-- End sidebar recent posts-->
+
+            </div>
+          </div><!-- End News & Updates -->
+
+
           <!-- Website Traffic -->
           <div class="card">
             <div class="filter">
@@ -657,72 +721,16 @@ if ($result = mysqli_query($con, $sql)) {
             </div>
           </div><!-- End Website Traffic -->
 
-          <!-- News & Updates Traffic -->
-          <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
-
-            <div class="card-body pb-0">
-              <h4 class="card-title">News &amp; Updates <span>| Today</span></h4>
-
-              <div class="news">
-                <div class="post-item clearfix">
-                  <img src="assets/img/news-1.jpg" alt="">
-                  <h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
-                  <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p>
-                </div>
-
-                <div class="post-item clearfix">
-                  <img src="assets/img/news-2.jpg" alt="">
-                  <h4><a href="#">Quidem autem et impedit</a></h4>
-                  <p>Illo nemo neque maiores vitae officiis cum eum turos elan dries werona nande...</p>
-                </div>
-
-                <div class="post-item clearfix">
-                  <img src="assets/img/news-3.jpg" alt="">
-                  <h4><a href="#">Id quia et et ut maxime similique occaecati ut</a></h4>
-                  <p>Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...</p>
-                </div>
-
-                <div class="post-item clearfix">
-                  <img src="assets/img/news-4.jpg" alt="">
-                  <h4><a href="#">Laborum corporis quo dara net para</a></h4>
-                  <p>Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...</p>
-                </div>
-
-                <div class="post-item clearfix">
-                  <img src="assets/img/news-5.jpg" alt="">
-                  <h4><a href="#">Et dolores corrupti quae illo quod dolor</a></h4>
-                  <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
-                </div>
-
-              </div><!-- End sidebar recent posts-->
-
-            </div>
-          </div><!-- End News & Updates -->
-
 
                  <script>
         // Assume you have a JSON response
-        var jsonResponse = {
-            message: "Page will reload in 10 seconds."
-        };
+        //var jsonResponse = { message:'Page will reload in 10 seconds.'};
 
         // Convert the JSON object to a string
-        var jsonString = JSON.stringify(jsonResponse);
+        var jsonString = JSON.stringify();
 
         // Display the JSON message on the page
-        document.body.innerHTML += '<div class="card">' + jsonString + '</div>';
+        document.body.innerHTML += '<div class="card">'+ jsonString + '</div>';
 
         // Reload the page after 3 seconds
         setTimeout(function() {
