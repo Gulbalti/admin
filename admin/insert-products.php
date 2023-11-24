@@ -40,6 +40,8 @@
             <div class="form-group">
                 <label for="brand">Select Brand:</label>
     <select class="form-control" name="brand" id="brand">
+    <option value='value'>Brand</option>
+
       <?php
 
       include('includes/connect.php');
@@ -49,6 +51,7 @@
       $run = mysqli_query($con, $brand);
 
       while($row = mysqli_fetch_array($run)){?>
+
 
         <option value='<?php echo $row['brand_name']; ?>'><?php echo $row['brand_name']; ?></option>
     

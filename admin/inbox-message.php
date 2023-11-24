@@ -24,35 +24,16 @@
 
             <?php     
 
+            include('includes/connect.php');
 
-            if (isset($_GET['id'])) {
-
-              $search = $_GET['id'];
-
-              $user = " SELECT * FROM users WHERE name='$search' limit 1 ";
-
-            }
-
-            if (isset($_GET['edit'])) {
-
-              $u_id = $_GET['edit'];
-
-             $user = " SELECT * FROM  users WHERE  user_id ='$u_id'";
-
-            }
-            else{
-
-
-             $name =$_SESSION['name']; 
+               $name = $_SESSION['name'];
 
 
              $user = " SELECT * FROM users WHERE name='$name' ";
 
-           }
-
              $run_user = mysqli_query($con, $user);
 
-             $row = mysqli_fetch_array($run_user);
+            $row = mysqli_fetch_array($run_user);
 
 
 
@@ -113,19 +94,45 @@
                 <div class="tab-pane fade sent-message pt-3" id="send-message">
 
                   <!-- send message Form -->
-                    <form action="inbox-message.php" method="post">
-                   
+                    <form action="inbox-message.php" method="post" class="form">
 
-                    <div class="row mb-3">
-                         <input name="profileid" type="hidden" class="form-control" value="<?php echo $row['user_id']; ?>">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label"> Name</label>
+                           <div class="row mb-3">
+                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">To Name:</label>
                       <div class="col-md-8 col-lg-9">
 
+    <select for="to_name" class="form-control col-md-4 col-lg-3 col-form-label" name="to_name" id="to_name">
+          <option value='selectname'>Select Name </option>
 
-                        <input name="name" type="text" class="form-control" id="Name" value="<?php echo $row['name']; ?>">
+      <?php
+
+      include('includes/connect.php');
+
+    $user = " SELECT * FROM users  ";
+
+      $run = mysqli_query($con, $user);
+
+      while($col = mysqli_fetch_array($run)){?>
+
+        <option value='<?php echo $col['name']; ?>'><?php echo $col['name']; ?></option>
+    
+    <?php } ?>
+</select>
+ 
+                      
+                      </div>
+                    </div>
+                       <div class="row mb-3">
+                      <label for="from_name" class="col-md-4 col-lg-3 col-form-label">From: <?php echo $row['name']; ?></label>
+                        <input name="from_name" type="hidden" class="form-control" id="from_name" value="<?php echo $row['name']; ?>">
+                    
+                    </div>
+
+ 
+        
+                      <div class="col-md-8 col-lg-9">
 
                          <input name="photo" type="hidden" class="form-control" id="photo" value="<?php echo $row['photo']; ?>">
-                      </div>
+                      
                     </div>
                        <div class="row mb-3">
                       <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
@@ -152,15 +159,12 @@
                       </div>
                     </div>
 
-                 
 
-                   
-
-                
 
                     <div class="text-center">
                       <input type="submit" name="send" class="btn btn-primary" value="Send Message">
                     </div>
+
                   </form><!-- End send message Form -->
 
 <?php  
@@ -171,17 +175,19 @@ include('includes/connect.php');
 
   if (isset($_POST['send'])) {
 
-        $name = $_POST['name'];
+        $to_name = $_POST['to_name'];
+        $from_name = $_POST['from_name'];
+
         $photo = $_POST['photo'];
 
         $email = $_POST['email'];
         $subject= $_POST['subject'];
         $message = $_POST['message'];
       
-      $sql = " INSERT INTO messages (person_name,email,person_image,subject ,message) VALUES('$name','$email','$photo','$subject','$message') ";
+      $sql = " INSERT INTO messages (to_name,from_name,email,person_image,subject ,message) VALUES('$to_name','$from_name','$email','$photo','$subject','$message') ";
       
       if(mysqli_query($con, $sql)){
-         echo "<script> alert('Message sent successfully.')</script>";
+         echo "<script> window.open('inbox-message.php?sent=Message sent successfully.','_self')</script>";
          exit;
       } else
       {
@@ -197,60 +203,111 @@ include('includes/connect.php');
                 </div>
 
 
-
-                <div class="tab-pane fade sent-message pt-3" id="sent-message">
+                   <div class="tab-pane fade inbox-message pt-5" id="inbox-message">
 
                   <?php 
 
                   include('includes/connect.php');
 
-                   $sql = "SELECT * FROM messages ";
+                   $sql = "SELECT * FROM messages WHERE to_name='$name'";
 
                    $col = mysqli_query($con, $sql);
 
-                   $row = mysqli_fetch_array($col);
+                  if($row = mysqli_fetch_array($col)){
 
 
 
                    ?>
 
-                  <!-- send message Form -->
-                    <form action="inbox-message.php?del=<?php echo $row['user_id'];?>" method="post">
-                   
+                  <!-- sent message Form -->
+  <form action="inbox-message.php?del=<?php echo $row['person_id'];?>" method="post">
+                    
+        <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+          <img src="assets/img/<?php echo $row['person_image']; ?>" width="60px" height="60px" alt="Profile" class="rounded-circle">
 
-                    <div class="row mb-3">
-                       
-                      <label for="name" class="col-md-4 col-lg-3 col-form-label">Name <?php echo $row['name']; ?></label>
-                     
-                    </div>
-                       <div class="row mb-3">
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email:<?php echo $row['email']; ?></label>
-                 
-                    </div>
+          <h4>From : <?php echo $row['from_name']; ?></h4><hr>
+          <h5>Subject: <?php echo $row['subject'];?></h5>
+          <p>Message:<br> <?php echo $row['message'];?></p>
 
-                        <div class="row mb-3">
-                      <label for="subject" class="col-md-4 col-lg-3 col-form-label">subject:<?php echo $row['subject']; ?></label>
-                     
-                    </div>
+          <b><?php echo $row['message_date']; ?> </b><br>
+          <button class="btn btn-outline-danger" type="submit" name="delete">Delete Message</button>
+        </div>
+      </form><!-- End sent message Form -->
+
+<?php  
 
 
-                 
+include('includes/connect.php');
+
+
+  if (isset($_GET['del'])) {
+
+        $delid = $_GET['del'];
+       
+      
+      $sql_del = " DELETE FROM messages WHERE person_id='$delid'";
+      
+      if(mysqli_query($con, $sql_del)){
+         echo "<script> alert('Inbox message Deleted successfully.')</script>";
+         exit;
+      } else
+      {
+         echo "Error occurred while updating the record!<BR>";
+         echo "Reason: ", mysqli_error($con);
+      }}
+   
+   mysqli_close($con);
+ 
+
+?>
+
+
+<?php }else{
+
+  echo "No messages";
+} ?>
+
+             
                
 
-                    <div class="row mb-3">
-                      <label for="message" class="col-md-4 col-lg-3 col-form-label">message:<?php echo $row['message']; ?></label>
-                    
-                    </div>
+                 
 
-                     <div class="row mb-3">
-                      <label for="date" class="col-md-4 col-lg-3 col-form-label">date:<?php echo $row['message_date']; ?></label>
-                    
-                    </div>
+                </div>
+              </div>
 
-                    <div class="text-center">
-                      <a href="inbox-message.php?del=<?php echo $row['person_id']; ?>">Delete Message</a>
-                    </div>
-                  </form><!-- End send message Form -->
+
+
+                <div class="tab-pane fade sent-message pt-5" id="sent-message">
+
+                  <?php 
+
+                  include('includes/connect.php');
+
+                   $sql = "SELECT * FROM messages WHERE from_name='$name'";
+
+                   $col = mysqli_query($con, $sql);
+
+                  if($row = mysqli_fetch_array($col)){
+
+
+
+                   ?>
+
+                  <!-- sent message Form -->
+  <form action="inbox-message.php?del=<?php echo $row['person_id'];?>" method="post">
+                    
+        <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+          <img src="assets/img/<?php echo $row['person_image']; ?>" width="60px" height="60px" alt="Profile" class="rounded-circle">
+
+          <h4>Sent to: <?php echo $row['to_name']; ?></h4><hr>
+          <h5>Subject: <?php echo $row['subject'];?></h5>
+
+          <p>Message:<br> <?php echo $row['message'];?></p>
+
+          <b><?php echo $row['message_date']; ?> </b><br>
+          <button class="btn btn-outline-danger" type="submit" name="delete">Delete Message</button>
+        </div>
+      </form><!-- End sent message Form -->
 
 <?php  
 
@@ -279,6 +336,10 @@ include('includes/connect.php');
 
 ?>
 
+<?php }else{
+
+  echo "Sent messages not here ";
+} ?>
 
                
 
