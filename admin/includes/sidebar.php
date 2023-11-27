@@ -17,7 +17,16 @@
           <li>
             <a href="inbox-message.php">
               <i class="bi bi-circle"></i><span>Inbox Message</span>
+
             </a>
+
+          </li>
+           <li>
+            <a href="inbox-notification.php">
+              <i class="bi bi-circle"></i><span>Inbox Notification</span>
+
+            </a>
+            
           </li>
           <li>
             <a href="sent-message.php">
