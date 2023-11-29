@@ -7,10 +7,11 @@ include('includes/connect.php');
 
     if (isset($_SESSION['name'])) {
        
-       $name=$_SESSION['name'];
+       $name = $_SESSION['name'];
 
-      $login=" INSERT INTO login_status (name,status) VALUES ('$name','inactive')";
-      $run_status = mysqli_query($con, $login);
+         $login="UPDATE users SET status='inactive' WHERE name='$name'";
+     $run_status = mysqli_query($con, $login);
+
       if ($run_status) {
 
  session_destroy();

@@ -40,7 +40,7 @@
             <div class="form-group">
                 <label for="brand">Select Brand:</label>
     <select class="form-control" name="brand" id="brand">
-    <option value='value'>Brand</option>
+    <option value='brand'>Brand</option>
 
       <?php
 
@@ -63,6 +63,8 @@
             <div class="form-group">
                              <label for="category">Select category:</label>
     <select class="form-control" name="category" id="category">
+          <option value='category'>category</option>
+
       <?php
 
       include('includes/connect.php');
@@ -82,6 +84,8 @@
               <div class="form-group">
                              <label for="category">Select user:</label>
     <select class="form-control" name="user" id="user">
+          <option value='user'>user</option>
+
       <?php
 
       include('includes/connect.php');
