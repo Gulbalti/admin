@@ -8,7 +8,7 @@ session_start();
 
      $name = $_SESSION['name'];
 
-      header('location:index.php?login=has been successfuly');
+      header('location:index.php?login ='.$name.' login has been successfuly');
     }
 
 
@@ -84,7 +84,7 @@ session_start();
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
 
-                  <form class="row g-3 "  method="post" action="pages-login.php">
+                  <form  method="post" action="pages-login.php">
 
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Full Name</label>
@@ -117,29 +117,37 @@ session_start();
 
                   if (isset($_POST['login'])) {
 
-                    $name = $_POST['name'];
-                    $password =$_POST['password'];
+                    // Check connection
+if ($con->connect_error) {
+    die("Connection failed: " . $con->connect_error);
+}
 
-                    $connect = " SELECT * FROM users WHERE name='$name' and password='$password'";
-                    $run = mysqli_query($con, $connect);
-                    $result = mysqli_num_rows($run);
-                    if ($result > 0) {
-       
+// Retrieve user input from the form
+$name = $_POST['name'];
+$password = $_POST['password'];
 
-     $_SESSION['name']=$name; 
+// Validate user credentials (perform proper validation and password hashing in a real-world scenario)
+$sql = "SELECT * FROM users WHERE name='$name' AND password='$password'";
+$result = $con->query($sql);
 
-    $login=" INSERT INTO login_status (name,status) VALUES ('$name','active')";
-     $run_status = mysqli_query($con, $login);
-  if ($run_status) {
+// Check if the user is found in the database
+if ($result->num_rows > 0) {
+    // Perform session handling (you may use sessions or tokens for authentication)
+    session_start();
+    $_SESSION['name'] = $name;    
+    $sql = "INSERT INTO login_status (name , status) VALUES ('$name','active')";
+    $con->query($sql);
 
-//setcookie($name, $password, time() + (86400 * 30), "/"); // 86400 = 1 day
+    header('location:index.php?login=has been successfuly');
+} else {
 
-                    } } else{
-                      echo "<script>alert('Username or Password incorrect!') </script>";
-                    
-                  
+  echo "<script> alert('User name or password incorrect')</script>";
+   
+}
 
-                  }
+// Close the database connection
+$con->close();
+
                 }
 
 

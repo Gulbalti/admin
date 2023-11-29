@@ -539,7 +539,7 @@ if ($result = mysqli_query($con, $sql)) {
 
                 include('includes/connect.php');
 
-                $active =" SELECT * FROM login_status  ";
+                $active =" SELECT * FROM login_status ";
                 $run_active = mysqli_query($con, $active);
 
                 while($row = mysqli_fetch_array($run_active)){ ?>
@@ -553,7 +553,9 @@ if ($result = mysqli_query($con, $sql)) {
 
                   if ($status =='active') {
                     echo "<i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>";
-                  }else {
+                  }
+
+                  if ($status=='inactive'){
                     echo "<i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>";
                   }
 
