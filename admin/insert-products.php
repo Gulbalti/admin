@@ -90,7 +90,7 @@
 
       include('includes/connect.php');
 
-      $user = "SELECT * FROM users ";
+      $user = "SELECT * FROM users WHERE name='$name'";
 
       $run = mysqli_query($con, $user);
 
@@ -172,8 +172,6 @@ if (isset($_POST['addproduct'])) {
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Product</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Brand</th>
                     <th scope="col">User</th>
                     <th scope="col">Image</th>
                     <th scope="col">Status</th>
@@ -188,18 +186,19 @@ if (isset($_POST['addproduct'])) {
 
                   include('includes/connect.php');
 
-                  $products = "SELECT * FROM products ";
+                  $products = "SELECT * FROM products WHERE user='$name' ";
                   $run = mysqli_query($con, $products);
                   while($row= mysqli_fetch_array($run)){  ?>
                   <tr>
                     <th scope="row"><?php echo $row['product_id']; ?></th>
                     <td><?php echo $row['pro_name']; ?></td>
-                    <td><?php echo $row['category']; ?></td>
-                    <td><?php echo $row['brand']; ?></td>
                     <td><?php echo $row['user']; ?></td>
                     <td><img width="100" height="100"src="assets/product_images/<?php echo $row['images']; ?>"></td>
                     <td><?php echo $row['pro_status']; ?></td>
                     <td><?php echo $row['pro_date']; ?></td>
+
+
+
 
 
                   </tr>

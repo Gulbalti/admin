@@ -127,13 +127,15 @@ session_start();
 
                        $_SESSION['name']=$name;
 
-         $login="UPDATE users SET status='active' WHERE name='$name' AND password='$password'";
+         $login="UPDATE users SET status='online' WHERE name='$name' AND password='$password'";
      $run_status = mysqli_query($con, $login);
 
       if ($run_status) {
 
 
 echo "<script> alert('Login successfuly')</script>";
+echo "<script> window.open('index.php?login=has been successfuly','_self')</script>";
+
               
 
 //setcookie($name, $password, time() + (86400 * 30), "/"); // 86400 = 1 day

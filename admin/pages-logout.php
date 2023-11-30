@@ -9,7 +9,7 @@ include('includes/connect.php');
        
        $name = $_SESSION['name'];
 
-         $login="UPDATE users SET status='inactive' WHERE name='$name'";
+         $login="UPDATE users SET status='active' WHERE name='$name'";
      $run_status = mysqli_query($con, $login);
 
       if ($run_status) {

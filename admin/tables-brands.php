@@ -76,7 +76,7 @@
                 if ($run_brand) {
                   echo "<script> alert('Brand has been deleted')</script>";
 
-                  exit;
+                  exit();
                 
                 }
 
