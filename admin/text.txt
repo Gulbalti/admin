@@ -1,8 +1,0 @@
- write git .gitignore file for ignore files like .css ,.java 
--> git cat > .gitigonre // write a .gitignore file then put *.css and *.java
--> git add .gitignore // add .gitignore file into staging area 
--> git commit -m "add gitignore file " // save into local repo.
--> git branch // show branch status
--> git branch admin // create new branch admin 
--> git branch testadmin // create new branch for testing.
-
