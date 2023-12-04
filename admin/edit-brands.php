@@ -83,7 +83,6 @@ if (isset($_POST['addbrand'])) {
     echo "Missing required fields.";
 }}
 
-$conn->close();
 
 ?>
 

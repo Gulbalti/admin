@@ -1,33 +1,51 @@
+
+<?php 
+
+session_start();
+
+
+    if (isset($_SESSION['name'])){
+
+     $name = $_SESSION['name'];
+
+      header('location:index.php?registered=has been successfuly');
+    }
+
+
+  ?>
+
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset='utf-8'>
+  <meta content='width=device-width, initial-scale=1.0' name='viewport'>
 
   <title>Pages / Register Admin </title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <meta content='' name='description'>
+  <meta content='' name='keywords'>
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href='assets/img/favicon.png' rel='icon'>
+  <link href='assets/img/apple-touch-icon.png' rel='apple-touch-icon'>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href='https://fonts.gstatic.com' rel='preconnect'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i' rel='stylesheet'>
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <link href='assets/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet'>
+  <link href='assets/vendor/bootstrap-icons/bootstrap-icons.css' rel='stylesheet'>
+  <link href='assets/vendor/boxicons/css/boxicons.min.css' rel='stylesheet'>
+  <link href='assets/vendor/quill/quill.snow.css' rel='stylesheet'>
+  <link href='assets/vendor/quill/quill.bubble.css' rel='stylesheet'>
+  <link href='assets/vendor/remixicon/remixicon.css' rel='stylesheet'>
+  <link href='assets/vendor/simple-datatables/style.css' rel='stylesheet'>
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href='assets/css/style.css' rel='stylesheet'>
 
   <!-- =======================================================
   * Template Name: NiceAdmin
@@ -41,129 +59,136 @@
 <body>
 
   <main>
-    <div class="container">
+    <div class='container'>
 
-      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+      <section class='section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4'>
+        <div class='container'>
+          <div class='row justify-content-center'>
+            <div class='col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center'>
 
-              <div class="d-flex justify-content-center py-4">
-                <a href="index.php" class="logo d-flex align-items-center w-auto">
-                  <img src="assets/img/logo.png" alt="">
-                  <span class="d-none d-lg-block">Admin</span>
+              <div class='d-flex justify-content-center py-4'>
+                <a href='index.php' class='logo d-flex align-items-center w-auto'>
+                  <img src='assets/img/logo.png' alt=''>
+                  <span class='d-none d-lg-block'>Admin</span>
                 </a>
               </div><!-- End Logo -->
 
-              <div class="card mb-3">
+              <div class='card mb-3'>
 
-                <div class="card-body">
+                <div class='card-body'>
 
-                  <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
-                    <p class="text-center small">Enter your personal details to create account</p>
+                  <div class='pt-4 pb-2'>
+                    <h5 class='card-title text-center pb-0 fs-4'>Create an Account</h5>
+                    <p class='text-center small'>Enter your personal details to create account</p>
                   </div>
 
                          <!-- Profile Edit Form -->
 
     
        
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="subscription-input-group">
-              <form action="pages-register.php" method="post">
-            <div class="mb-3">
-                <label for="fullname">Full Name:</label>
-                <input type="text" class="form-control" name="fullname" required>
-            </div>
-           
-           
-            <div class="mb-3">
-                <label for="about">About Me:</label>
-                <textarea class="form-control" name="about" required></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="company">Company:</label>
-                <input type="text" class="form-control" name="company">
-            </div>
-            <div class="mb-3">
-                <label for="job">Job Title:</label>
-                <input type="text" class="form-control" name="job">
-            </div>
-            <div class="mb-3">
-                <label for="country">Country:</label>
-                <input type="text" class="form-control" name="country">
-            </div>
-            <div class="mb-3">
-                <label for="address">Address:</label>
-                <input type="text" class="form-control" name="address">
-            </div>
-            <div class="mb-3">
-                <label for="phone">Phone Number:</label>
-                <input type="tel" class="form-control" name="phone">
-            </div>
-            <div class="mb-3">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" name="email" required>
-            </div>
-                <div class="mb-3">
-                <label for="password">Password </label>
-                <input type="password" class="form-control" name="password" required>
-            </div>
-          
-          <div class="mb-3">
-         
-            <button type="submit" name="register" class="btn btn-primary">Submit</button>
-          </div>
-        </form>
-        <?php
+        <div class='row'>
+          <div class='col-sm-12'>
+            <div class='subscription-input-group'>
+              <form class='row g-3 '  method='post' action='pages-register.php'>
+
+                    <div class='col-12'>
+                      <label for='yourUsername' class='form-label'> Name</label>
+                      <div class='input-group has-validation'>
+                        <span class='input-group-text' id='inputGroupPrepend'>@</span>
+                        <input type='text' name='name' class='form-control' id='yourUsername' required>
+                        <div class='invalid-feedback'>Please enter your  Name.</div>
+                        <div class='invalid-feedback'><?php echo @$name."Already registered";?></div>
+                      </div>
+                    </div>
+
+                    <div class='col-12'>
+                      <label for='youremail' class='form-label'>email</label>
+                      <input type='email' name='email' class='form-control' id='youremail' required>
+                     <div class='invalid-feedback'>Please enter your email!</div>
+                     <div class='invalid-feedback'><?php echo @$email."Already registered";?></div>
+                    </div>
+                         <div class='col-12'>
+                      <label for='yourmobile' class='form-label'>mobile</label>
+                      <input type='text' name='mobile' class='form-control' id='yourmobile' required>
+                     <div class='invalid-feedback'>Please enter your mobile!</div>
+                
+
+                    </div>
+                         <div class='col-12'>
+                      <label for='yourPassword' class='form-label'>Password</label>
+                      <input type='password' name='password' class='form-control' id='yourPassword' required>
+                     <div class='invalid-feedback'>Please enter your password!</div>
+                    </div>
+
+                   
+                    <div class='col-12'>
+                      <button class='btn btn-primary w-100' name='register' type='submit'>register</button>
+                    </div>
+                    <div class='col-12'>
+                      <p class='small mb-0'>have account ? <a href='pages-login.php'>login  account</a></p>
+                    </div>
+                  </form>
+
+                  <?php 
 
 
-  include('includes/connect.php');
+                  include('includes/connect.php');
+
+                  if (isset($_POST['register'])) {
+
+                    $name = $_POST['name'];
+                    $email = $_POST['email'];
+                    $phone = $_POST['mobile'];
+                    $password =$_POST['password'];
+
+                    $connect =" SELECT * FROM users WHERE name='$name' AND  email='$email'";
+                    $run = mysqli_query($con, $connect);
+                    $result = mysqli_num_rows($run);
+                    if ($result > 0) {
+
+                      echo  $name.'Already registered please use another Email or Name';
+                      exit;
+
+                    }
+
+                       $insert  ="INSERT INTO users (name,about,company,job,country,address,phone,email, photo,password) VALUES ('$name','about','company','job','country','$address','$phone','$email','empty','$password')";
+                    $go =  mysqli_query($con,$insert);
+       
 
 
-if (isset($_POST['register'])) {
 
-// Prepare and execute the SQL query to insert data securely
-$fullname = $_POST['fullname'];
+    $login="INSERT INTO login_status (name,status) VALUES ('$name','active')";
+     $run_status = mysqli_query($con, $login);
+  if ($run_status > 0 ) {
 
-$about = $_POST['about'];
-$company = $_POST['company'];
-$job = $_POST['job'];
-$country = $_POST['country'];
-$address = $_POST['address'];
-$phone = $_POST['phone'];
-$email = $_POST['email'];
-$password = $_POST['password'];
+                          echo "<script>alert('Registartion successful!') </script>";
+
+
+             $_SESSION['name']=$name; 
+
+        header('location:index.php?registered=$namehas been successfuly');
 
 
 
+setcookie($name, $password, time() + (86400 * 30), '/'); // 86400 = 1 day
 
-$sql = " INSERT INTO profiles (fullname,about, company, job, country, address, phone, email,photo,password) VALUES ('$fullname','$about', '$company', '$job', '$country', '$address',' $phone', '$email','Notimage','$password')";
-
-  $run = mysqli_query($con, $sql);
-   if ($run) {
-
-session_start();
-   
-    $_SESSION['fullname'] = $fullname;
-
-
-header('location:header.php?login has been successfuly');
-                    }else{
-                      echo "<script>alert('Username or Password incorrect!') </script>";
+                    }  else{
+                      echo "<script>alert('Registartion failed!') </script>";
                     
                   
 
-                  }
+                  
+                }
+
+              }
+                
 
 
+                  ?>
 
-}
+               
 
 
-
-?>
 
             </div>
           </div>  
@@ -180,12 +205,12 @@ header('location:header.php?login has been successfuly');
                 </div>
               </div>
 
-              <div class="credits">
+              <div class='credits'>
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                Designed by <a href='https://bootstrapmade.com/'>BootstrapMade</a>
               </div>
 
             </div>
@@ -197,20 +222,20 @@ header('location:header.php?login has been successfuly');
     </div>
   </main><!-- End #main -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href='#' class='back-to-top d-flex align-items-center justify-content-center'><i class='bi bi-arrow-up-short'></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/chart.js/chart.umd.js"></script>
-  <script src="assets/vendor/echarts/echarts.min.js"></script>
-  <script src="assets/vendor/quill/quill.min.js"></script>
-  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src='assets/vendor/apexcharts/apexcharts.min.js'></script>
+  <script src='assets/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+  <script src='assets/vendor/chart.js/chart.umd.js'></script>
+  <script src='assets/vendor/echarts/echarts.min.js'></script>
+  <script src='assets/vendor/quill/quill.min.js'></script>
+  <script src='assets/vendor/simple-datatables/simple-datatables.js'></script>
+  <script src='assets/vendor/tinymce/tinymce.min.js'></script>
+  <script src='assets/vendor/php-email-form/validate.js'></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src='assets/js/main.js'></script>
 
 </body>
 

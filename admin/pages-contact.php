@@ -22,10 +22,6 @@
 
     <section class="section contact">
 
-      <div class="row gy-4">
-
-        <div class="col-xl-6">
-
           <div class="row">
             <div class="col-lg-6">
               <div class="info-box card">
@@ -57,11 +53,11 @@
             </div>
           </div>
 
-        </div>
+      
 
         <div class="col-xl-6">
           <div class="card p-4">
-            <form action="forms/contact.php" method="post" class="php-email-form">
+            <form action="pages-contact.php" method="post" >
               <div class="row gy-4">
 
                 <div class="col-md-6">
@@ -85,11 +81,32 @@
                   <div class="error-message"></div>
                   <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                  <button type="submit">Send Message</button>
+                  <button type="submit" name="send">Send Message</button>
                 </div>
 
               </div>
             </form>
+
+            <?php 
+
+
+            include('includes/connect.php');
+
+            if (isset($_POST['send'])) {
+
+              $name = $_POST['name'];
+              $email = $_POST['email'];
+              $subject = $_POST['subject'];
+              $message = $_POST['message'];
+
+ $insert = "INSERT INTO contact(name,email,subject,message) VALUES ('$name','$email','$subject','$message')";
+ $run_insert = mysqli_query($con, $insert);
+ if ($run_insert) {
+   echo "<script> alert('Message has been sent')</script>";
+ }
+
+}
+            ?>
           </div>
 
         </div>

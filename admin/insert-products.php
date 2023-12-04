@@ -7,29 +7,31 @@
   <?php include('includes/sidebar.php'); ?>
  <!-- End Sidebar-->
 
+
  <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Form Layouts</h1>
+      <h1>Product Tables</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-          <li class="breadcrumb-item">Forms</li>
-          <li class="breadcrumb-item active">Layouts</li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">Products</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
+
     <section class="section">
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"> Products Post Form</h5>
+              <h5 class="card-title">Insert Products</h5>
 
-              <!-- Product Post Form -->
+             <!-- Product Post Form -->
 
-             <form action="insert_product.php" method="POST" enctype="multipart/form-data">
+             <form action="insert-products.php" method="POST" enctype="multipart/form-data">
             
             <div class="form-group">
                 <label for="pro_name">Product Name:</label>
@@ -38,6 +40,8 @@
             <div class="form-group">
                 <label for="brand">Select Brand:</label>
     <select class="form-control" name="brand" id="brand">
+    <option value='brand'>Brand</option>
+
       <?php
 
       include('includes/connect.php');
@@ -47,6 +51,7 @@
       $run = mysqli_query($con, $brand);
 
       while($row = mysqli_fetch_array($run)){?>
+
 
         <option value='<?php echo $row['brand_name']; ?>'><?php echo $row['brand_name']; ?></option>
     
@@ -58,6 +63,8 @@
             <div class="form-group">
                              <label for="category">Select category:</label>
     <select class="form-control" name="category" id="category">
+          <option value='category'>category</option>
+
       <?php
 
       include('includes/connect.php');
@@ -77,17 +84,19 @@
               <div class="form-group">
                              <label for="category">Select user:</label>
     <select class="form-control" name="user" id="user">
+          <option value='user'>user</option>
+
       <?php
 
       include('includes/connect.php');
 
-      $user = "SELECT * FROM customers ";
+      $user = "SELECT * FROM users WHERE name='$name'";
 
       $run = mysqli_query($con, $user);
 
       while($row = mysqli_fetch_array($run)){?>
 
-        <option value='<?php echo $row['fullname']; ?>'><?php echo $row['fullname']; ?></option>
+        <option value='<?php echo $row['name']; ?>'><?php echo $row['name']; ?></option>
     
     <?php } ?>
 </select>
@@ -95,11 +104,10 @@
             </div>
             <div class="form-group">
                 <label for="images">Product Images:</label>
-                <input type="file" class="form-control-file" name="images[]" accept="image/*" multiple required>
+                <input type="file" class="form-control-file p-2" name="images[]" accept="image/*" multiple required>
             </div>
-            <br>
             <div class="form-group">
-            <input  type="submit" name="addproduct" value="Add Product" class="btn btn-primary">
+            <input  type="submit" name="addproduct" value="Add Product" class="btn btn-primary text-center ">
           </div>
         </form>
       </div>
@@ -143,17 +151,74 @@ if (isset($_POST['addproduct'])) {
     echo "Missing required fields.";
 }}
 
-$conn->close();
+
 
 ?>
 
               <!-- End Product Post Form -->
 
 
+
+            </div>
+          </div>
+
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Products Table</h5>
+
+              <!-- Products Table -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Post Date</th>
+
+
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <?php 
+
+                  include('includes/connect.php');
+
+                  $products = "SELECT * FROM products WHERE user='$name' ";
+                  $run = mysqli_query($con, $products);
+                  while($row= mysqli_fetch_array($run)){  ?>
+                  <tr>
+                    <th scope="row"><?php echo $row['product_id']; ?></th>
+                    <td><?php echo $row['pro_name']; ?></td>
+                    <td><?php echo $row['user']; ?></td>
+                    <td><img width="100" height="100"src="assets/product_images/<?php echo $row['images']; ?>"></td>
+                    <td><?php echo $row['pro_status']; ?></td>
+                    <td><?php echo $row['pro_date']; ?></td>
+
+
+
+
+
+                  </tr>
+                <?php } ?>
+               
+                </tbody>
+              </table>
+              <!-- End Products Table  -->
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+
+
     </section>
 
   </main><!-- End #main -->
-
  
   <!-- ======= Footer ======= -->
 

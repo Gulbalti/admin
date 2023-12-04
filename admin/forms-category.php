@@ -28,7 +28,7 @@
             <div class="card-body">
               <h5 class="card-title">Form Categorys</h5>
 
-              <!-- Form Bands -->
+              <!-- Form category -->
               <form method="post" action="forms-category.php" enctype="multipart/form-data">
                 <div class="row mb-4">
                   <label for="inputText" class="col-sm-4 col-form-label">Category Name</label>
@@ -50,7 +50,7 @@
                   </div>
                 </div>
 
-              </form><!-- End General Form Elements -->
+              </form><!-- End category-->
         
 
             </div>

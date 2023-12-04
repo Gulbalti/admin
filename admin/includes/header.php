@@ -4,13 +4,24 @@
 session_start();
 
 
-    if (!isset($_SESSION['fullname'])){
+    if (!isset($_SESSION['name'])){
 
-     $fullname = $_SESSION['fullname'];
+     $name = $_SESSION['name'];
 
       header('location:pages-login.php');
     }
 
+        include('connect.php');
+
+
+            $name =$_SESSION['name']; 
+
+
+             $profile = " SELECT * FROM users WHERE name='$name' ";
+
+             $run_pro = mysqli_query($con, $profile);
+
+             $row = mysqli_fetch_array($run_pro);
 
   ?>
 
@@ -90,7 +101,7 @@ session_start();
 
         include('connect.php');
 
-        $note = "SELECT * FROM notifications LIMIT 3 ";
+        $note = "SELECT * FROM notifications WHERE to_name='$name'";
 
         $run_note = mysqli_query($con,$note);
 
@@ -103,13 +114,21 @@ session_start();
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number"><?php echo $result; ?></span>
+            <?php 
+
+            if ($result > 0) {
+              echo '<span class="badge bg-primary badge-number">'.$result.'</span>';
+            }else{
+              echo '<span class="badge bg-primary badge-number"></span>';
+            }
+
+          ?>
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
               You have <?php echo $result; ?>  new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              <a href="inbox-notification.php"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
 
 
@@ -118,7 +137,7 @@ session_start();
 
         include('connect.php');
 
-        $note = "SELECT * FROM notifications LIMIT 3 ";
+        $note = "SELECT * FROM notifications WHERE to_name='$name'";
 
         $run_note = mysqli_query($con,$note);
 
@@ -141,7 +160,7 @@ session_start();
           
 
             <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
+              <a href="inbox-notification.php">Show all notifications</a>
             </li>
 
           </ul><!-- End Notification Dropdown Items -->
@@ -151,7 +170,7 @@ session_start();
 
             include('connect.php');
 
-            $message = "SELECT * FROM messages ";
+            $message = "SELECT * FROM messages WHERE to_name='$name' ";
 
             $run = mysqli_query($con, $message);
 
@@ -164,19 +183,27 @@ session_start();
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number"> <?php echo $count; ?></span>
+            <?php 
+
+            if ($count > 0) {
+              echo '<span class="badge bg-success badge-number">'.$count.'</span>';
+            }else{
+              echo '<span class="badge bg-success badge-number"></span>';
+                  }
+
+          ?>
           </a><!-- End Messages Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
             <li class="dropdown-header">
               You have <?php echo $count; ?>  new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              <a href="inbox-message.php"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
                  <?php 
 
             include('connect.php');
 
-            $message = "SELECT * FROM messages ";
+            $message = "SELECT * FROM messages WHERE to_name='$name'";
 
             $run = mysqli_query($con, $message);
 
@@ -186,8 +213,8 @@ session_start();
             </li>
 
             <li class="message-item">
-              <a href="#">
-                <img src="assets/img/<?php echo $row['person_image']; ?>" alt="" class="rounded-circle">
+              <a href="inbox-message.php?id=<?php echo $row['message_id']; ?>">
+                <img src="assets/img/<?php echo $row['person_image']; ?>" alt="Sender Photo" class="rounded-circle">
                 <div>
                   <h4><?php echo $row['person_name']; ?></h4>
                   <p><?php echo $row['message']; ?></p>
@@ -199,7 +226,7 @@ session_start();
           <?php } ?>
           
             <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
+              <a href="inbox-message.php">Show all messages</a>
             </li>
 
           </ul><!-- End Messages Dropdown Items -->
@@ -208,38 +235,19 @@ session_start();
      
         <li class="nav-item dropdown pe-3">
 
-            <?php     
-
-
-            session_start();
-
-
-             $fullname =$_SESSION['fullname']; 
-
-
-             $profile = " SELECT * FROM profiles WHERE fullname='$fullname' ";
-
-             $run_pro = mysqli_query($con, $profile);
-
-             $row = mysqli_fetch_array($run_pro);
-
-
-
-
-
-            ?>
+          
 
 
     
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/<?php echo  $row['photo']; ?>" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><?php     echo   $row['fullname']; ?></span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php     echo   $row['name']; ?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6><?php     echo    $row['fullname'];
+              <h6><?php     echo    $row['name'];
  ?></h6>
               <span><?php  echo $row['job'];?></span>
             </li>

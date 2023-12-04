@@ -29,30 +29,30 @@
 
               $search = $_GET['id'];
 
-             $profile = " SELECT * FROM profiles WHERE fullname='$search' limit 1 ";
+              $user = " SELECT * FROM users WHERE name='$search' limit 1 ";
 
             }
 
             if (isset($_GET['edit'])) {
 
-              $c_id = $_GET['edit'];
+              $u_id = $_GET['edit'];
 
-             $profile = " SELECT * FROM customers WHERE customer_id ='$c_id'";
+             $user = " SELECT * FROM  users WHERE  user_id ='$u_id'";
 
             }
             else{
 
 
-             $fullname =$_SESSION['fullname']; 
+             $name =$_SESSION['name']; 
 
 
-             $profile = " SELECT * FROM profiles WHERE fullname='$fullname' ";
+             $user = " SELECT * FROM users WHERE name='$name' ";
 
            }
 
-             $run_pro = mysqli_query($con, $profile);
+             $run_user = mysqli_query($con, $user);
 
-             $row = mysqli_fetch_array($run_pro);
+             $row = mysqli_fetch_array($run_user);
 
 
 
@@ -67,7 +67,7 @@
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
               <img src="assets/img/<?php echo $row['photo']; ?>" alt="Profile" class="rounded-circle">
-              <h2><?php echo $row['fullname']; ?></h2>
+              <h2><?php echo $row['name']; ?></h2>
               <h3><?php echo $row['job']; ?></h3>
               <div class="social-links mt-2">
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -113,8 +113,8 @@
                   <h5 class="card-title">Profile Details</h5>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $row['fullname']; ?></div>
+                    <div class="col-lg-3 col-md-4 label "> Name</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $row['name']; ?></div>
                   </div>
 
                   <div class="row">
@@ -187,21 +187,21 @@
                         <div class="pt-2">
 
                           <input type="file" name="image" class=" btn-sm" title="Upload new profile image">
-                          <a href="users-delete.php?photo=<?php echo $id=$row['profile_id']; ?>" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                          <a href="users-delete.php?photo=<?php echo $id=$row['user_id']; ?>" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                         </div>
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                         <input name="profileid" type="hidden" class="form-control" value="<?php echo $row['profile_id']; ?>">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+                         <input name="profileid" type="hidden" class="form-control" value="<?php echo $row['user_id']; ?>">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label"> Name</label>
                       <div class="col-md-8 col-lg-9">
 
 
-                        <input name="proid" type="text" class="form-control" id="fullName" value="<?php echo $row['profile_id']; ?>">
+                        <input name="proid" type="text" class="form-control" id="Name" value="<?php echo $row['user_id']; ?>">
 
 
-                        <input name="fname" type="text" class="form-control" id="fullName" value="<?php echo $row['fullname']; ?>">
+                        <input name="name" type="text" class="form-control" id="Name" value="<?php echo $row['name']; ?>">
                       </div>
                     </div>
 
@@ -299,7 +299,7 @@ include('includes/connect.php');
     
         $proid = $_POST['proid'];
 
-        $fname = $_POST['fname'];
+        $name = $_POST['name'];
         $about = $_POST['about'];
         $company = $_POST['company'];
         $job = $_POST['job'];
@@ -318,7 +318,7 @@ include('includes/connect.php');
             if (move_uploaded_file($imagetmp, "assets/img/$image")) {
                 // Insert image information into the database
 
-      $sql = "UPDATE profiles SET fullname='$fname', about='$about', company='$company', job='$job', country='$country', address='$address', phone='$phone', email='$email', photo='$image', status='$status' WHERE profile_id ='$proid'";
+      $sql = "UPDATE users SET name='$name', about='$about', company='$company', job='$job', country='$country', address='$address', phone='$phone', email='$email', photo='$image', status='$status' WHERE user_id ='$proid'";
       
       if(mysqli_query($con, $sql)){
          echo "<script> alert('Data updated successfully.')</script>";
@@ -441,7 +441,7 @@ include('includes/connect.php');
                 
         
     
-      $sql = "UPDATE profiles SET  password='$newpass' WHERE password ='$password'";
+      $sql = "UPDATE users SET  password='$newpass' WHERE password ='$password'";
       
        if(mysqli_query($con, $sql)){
          echo "<script> alert('Password changed successfully.')</script>";

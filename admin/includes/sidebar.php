@@ -9,6 +9,8 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
+      
+
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -20,15 +22,16 @@
             </a>
           </li>
           <li>
-            <a href="insert_product.php">
+            <a href="insert-products.php">
               <i class="bi bi-circle"></i><span>Form Product</span>
             </a>
           </li>
-             <li>
-            <a href="forms-brands.php">
-              <i class="bi bi-circle"></i><span>Form Brands</span>
+           <li>
+            <a href="insert-news.php">
+              <i class="bi bi-circle"></i><span>Form News</span>
             </a>
           </li>
+          
               <li>
             <a href="forms-category.php">
               <i class="bi bi-circle"></i><span>Form Category</span>
@@ -39,9 +42,25 @@
               <i class="bi bi-circle"></i><span>Form Editors</span>
             </a>
           </li>
+        </ul>
+      </li><!-- End Forms Nav -->
 
-      
-
+        <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#Messages-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-envelope"></i><span>Messages</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="Messages-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="inbox-message.php">
+              <i class="bi bi-circle"></i><span>Inbox Message</span>
+            </a>
+          </li>
+          <li>
+            <a href="inbox-notification.php">
+              <i class="bi bi-circle"></i><span>Inbox Notifcation</span>
+            </a>
+          </li>
+         
         </ul>
       </li><!-- End Forms Nav -->
 
@@ -56,18 +75,32 @@
             </a>
           </li>
            <li>
-            <a href="tables-products.php">
-              <i class="bi bi-circle"></i><span>Products Tables</span>
+            <a href="insert-brands.php">
+              <i class="bi bi-circle"></i><span>Insert Brands</span>
+            </a>
+              
+          </li>
+           <li>
+            <a href="insert-products.php">
+              <i class="bi bi-circle"></i><span>Insert Products </span>
+            </a>
+             <a href="status-product.php">
+              <i class="bi bi-circle"></i><span>Status Product </span>
+            </a>
+          </li>
+             <li>
+            <a href="insert-category.php">
+              <i class="bi bi-circle"></i><span>Insert Category</span>
             </a>
           </li>
           <li>
-            <a href="tables-customers.php">
-              <i class="bi bi-circle"></i><span>Customers Tables</span>
+            <a href="tables-users.php">
+              <i class="bi bi-circle"></i><span>Users Tables</span>
             </a>
           </li>
           <li>
-            <a href="tables-data.php">
-              <i class="bi bi-circle"></i><span>Data Tables</span>
+            <a href="users-data.php">
+              <i class="bi bi-circle"></i><span>Users Data</span>
             </a>
           </li>
         </ul>
@@ -78,21 +111,17 @@
           <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="charts-chartjs.php">
-              <i class="bi bi-circle"></i><span>Chart.js</span>
+            <li>
+            <a href="chartpie.php">
+              <i class="bi bi-circle"></i><span>Chart pie</span>
             </a>
           </li>
-          <li>
-            <a href="charts-apexcharts.php">
-              <i class="bi bi-circle"></i><span>ApexCharts</span>
+           <li>
+            <a href="chartbar.php">
+              <i class="bi bi-circle"></i><span>Chart Bar</span>
             </a>
           </li>
-          <li>
-            <a href="charts-echarts.php">
-              <i class="bi bi-circle"></i><span>ECharts</span>
-            </a>
-          </li>
+         
         </ul>
       </li><!-- End Charts Nav -->
 
