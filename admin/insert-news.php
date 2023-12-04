@@ -40,10 +40,21 @@
 
 
             <div class="form-group">
-                <label for="pro_name">New Description :</label>
-                <textarea col='4' row='4' class="form-control" name="news_description" required>
+               <div class="card">
+            <div class="card-body">
+ <h5 class="card-title"><label for="pro_name">New Description :</label></h5>
 
-              </textarea>            </div>
+              <!-- Quill Editor Default -->
+              <div class="quill-editor-default">
+                <textarea col='4' row='4' class="quill-editor-default" name="news_description" required>
+Write Description here!
+              </textarea>    
+              </div>
+              <!-- End Quill Editor Default -->
+
+            </div>
+          </div>
+           </div>
 
      
               <div class="form-group">

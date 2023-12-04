@@ -31,11 +31,7 @@
               <i class="bi bi-circle"></i><span>Form News</span>
             </a>
           </li>
-             <li>
-            <a href="forms-brands.php">
-              <i class="bi bi-circle"></i><span>Form Brands</span>
-            </a>
-          </li>
+          
               <li>
             <a href="forms-category.php">
               <i class="bi bi-circle"></i><span>Form Category</span>
@@ -82,9 +78,7 @@
             <a href="insert-brands.php">
               <i class="bi bi-circle"></i><span>Insert Brands</span>
             </a>
-               <a href="tables-brands.php">
-              <i class="bi bi-circle"></i><span>Table Brands</span>
-            </a>
+              
           </li>
            <li>
             <a href="insert-products.php">
@@ -105,8 +99,8 @@
             </a>
           </li>
           <li>
-            <a href="tables-data.php">
-              <i class="bi bi-circle"></i><span>Data Tables</span>
+            <a href="users-data.php">
+              <i class="bi bi-circle"></i><span>Users Data</span>
             </a>
           </li>
         </ul>
